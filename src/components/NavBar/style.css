@@ -1,0 +1,10 @@
+.header-ul {
+  display: flex;
+  display: -webkit-flex;
+  width: 140px;
+}
+
+.header-ul li {
+  flex-grow: 1;
+  text-align: center;
+}

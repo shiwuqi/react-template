@@ -1,0 +1,32 @@
+.login-container {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  background-color: #2d3a4b;
+}
+
+.login-form {
+  position: absolute;
+  left: 0;
+  right: 0;
+  width: 420px;
+  padding: 35px 35px 15px 35px;
+  margin: 120px auto;
+}
+
+.login-title {
+  font-size: 26px;
+  font-weight: 400;
+  color: #eee;
+  margin: 0px auto 40px auto;
+  text-align: center;
+  font-weight: bold;
+}
+
+.login-form-forgot {
+  float: right;
+}
+
+.login-form-button {
+  width: 100%;
+}
