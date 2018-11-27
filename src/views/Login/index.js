@@ -70,6 +70,7 @@ class Login extends React.Component {
               <Button type="primary" htmlType="submit" className="login-form-button">
                 登录
               </Button>
+              <p style={{color: '#fff'}}>账号: admin  密码: 123456</p>
             </FormItem>
           </Form>
         </div>
