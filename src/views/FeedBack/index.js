@@ -37,7 +37,7 @@ class FeedBack extends React.Component {
     this.setState({
       'pagination': Object.assign({}, this.state.pagination, { showLoading: true })
     })
-    this.querySystemFeedBack({pageIndex: page})
+    this.querySystemFeedBack({ pageIndex: page })
   }
 
   render() {

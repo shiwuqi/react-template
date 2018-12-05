@@ -22,12 +22,12 @@ class ContentMenu extends React.Component {
       {
         title: '用户反馈',
         icon: 'file-done',
-        key: '/layOut/feedBack'
+        key: '/home/feedBack'
       },
       {
         title: '用户信息',
         icon: 'user',
-        key: '/layOut/user'
+        key: '/home/user'
       }
     ]
   }

@@ -66,7 +66,6 @@ class Login extends React.Component {
               })(
                 <Checkbox style={{ color: '#fff' }}>记住我</Checkbox>
               )}
-              <a className="login-form-forgot" href="https://www.baidu.com">忘记密码</a>
               <Button type="primary" htmlType="submit" className="login-form-button">
                 登录
               </Button>
