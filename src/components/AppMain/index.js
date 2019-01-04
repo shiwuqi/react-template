@@ -1,9 +1,18 @@
 import React from 'react'
 import { Switch } from 'react-router-dom'
+import Loadable from 'react-loadable'
 import PrivateRoute from '../PrivateRoute'
+import Loading from '../../views/Loading'
 
-import FeedBack from '../../views/FeedBack'
-import User from '../../views/User'
+const FeedBack = Loadable({
+  loader: () => import('../../views/FeedBack'),
+  loading: Loading
+})
+
+const User = Loadable({
+  loader: () => import('../../views/User'),
+  loading: Loading
+})
 
 export default class AppMain extends React.Component {
   render () {
