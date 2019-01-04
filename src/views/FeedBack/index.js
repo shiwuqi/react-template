@@ -93,7 +93,7 @@ class FeedBack extends React.Component {
     ]
     return (
       <div>
-        <Table columns={columns} dataSource={this.state.data} rowKey={record => record.id} pagination={{total: this.state.pagination.total, onChange: this.onChange}} bordered style={{background: '#fff'}} loading={this.state.pagination.showLoading} />
+        <Table columns={columns} dataSource={this.state.data} rowKey={record => record.id} pagination={{total: this.state.pagination.total, onChange: this.onChange}} style={{background: '#fff', padding: 10}} loading={this.state.pagination.showLoading} />
       </div>
     )
   }
