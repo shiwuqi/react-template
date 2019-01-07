@@ -53,13 +53,15 @@ class FeedBack extends React.Component {
         title: 'union',
         dataIndex: 'id',
         width: 200,
-        align: 'center'
+        align: 'center',
+        fixed: 'left'
       },
       {
         title: '姓名',
         dataIndex: 'name',
         width: 200,
-        align: 'center'
+        align: 'center',
+        fixed: 'left'
       },
       {
         title: '年龄',
