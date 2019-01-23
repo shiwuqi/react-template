@@ -1,6 +1,6 @@
 ### `yarn start`
 
 
-### `npm run build`
+### `yarn build`
 
 
