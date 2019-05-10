@@ -3,14 +3,16 @@ import ContentMenu from '../ContentMenu'
 
 const menus = [
   {
-    title: '用户反馈',
+    name: '用户反馈',
     icon: 'file-done',
-    key: '/home/feedBack'
+    path: '/home/feedBack',
+    key: 'feedback'
   },
   {
-    title: '用户信息',
+    name: '用户信息',
     icon: 'user',
-    key: '/home/user'
+    path: '/home/user',
+    key: 'user'
   }
 ]
 

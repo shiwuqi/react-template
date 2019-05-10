@@ -9,7 +9,6 @@ export const REQUEST_POSTS = 'REQUEST_POSTS'
 export const RECEIVE_POSTS = 'RECEIVE_POSTS'
 
 
-
 export function increment(val) {
   return {
     type: INCREMENT,
@@ -45,7 +44,7 @@ export function requestData({ funcName, url, params, method }) {
     let res = await request(url, params, method)
     if (res.status === '00') {
       Cookies.set('token', res.data.token)
-      history.replace({ pathname: '/home/feedBack', query: { id: 'login' } })
+      history.replace({ pathname: '/home/feedback', query: { id: 'login' } })
       dispatch(receivePosts())
     } else {
       message.error(res.log)

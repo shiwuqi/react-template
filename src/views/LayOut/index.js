@@ -20,15 +20,15 @@ export default class LayOut extends React.Component {
   render() {
     return(
       <div>
-        <Layout style={{height: '100vh', overflow: 'hidden'}}>
+        <Layout style={{width: '100%', height: '100vh', overflow: 'hidden'}}>
           <Sider collapsible trigger={null} collapsed={this.state.collapsed}>
             <SideBar></SideBar>
           </Sider>
-          <Layout style={{overflowY: 'scroll'}}>
-            <Header style={{background: '#fff', padding: '0 16px'}}>
+          <Layout style={{background: '#fff'}}>
+            <Header style={{padding: '0 16px', background: '#fff', boxShadow: '0 2px 6px rgba(99, 99, 99, .15)'}}>
               <NavBar collapsed={this.state.collapsed} onToggle={this.onToggle} />
             </Header>
-            <Content style={{margin: '0 16px'}}>
+            <Content>
               <AppMain></AppMain>
             </Content>
           </Layout>

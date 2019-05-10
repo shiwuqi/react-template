@@ -2,7 +2,7 @@ import React from 'react'
 import { Table, message, Tooltip } from 'antd'
 import request from '../../utils/request'
 
-class FeedBack extends React.Component {
+class Feedback extends React.Component {
   state = {
     data: [],
     pagination: {
@@ -123,7 +123,7 @@ class FeedBack extends React.Component {
         dataIndex: 'address',
         render: (text, record) => (
           <Tooltip placement="top" title={!record.address ? '暂无地址' : record.address}>
-            <p style={userProblem}>{!record.address ? '暂无地址' : record.address}</p>
+            <span style={userProblem}>{!record.address ? '暂无地址' : record.address}</span>
           </Tooltip>
         ),
         width: 280,
@@ -143,11 +143,9 @@ class FeedBack extends React.Component {
       }
     ]
     return (
-      <div>
-        <Table columns={columns} dataSource={this.state.data} rowKey={record => record.id} pagination={{total: this.state.pagination.total, onChange: this.onChange}} style={{background: '#fff', padding: 10}} loading={this.state.pagination.showLoading} />
-      </div>
+      <Table bordered columns={columns} dataSource={this.state.data} rowKey={record => record.id} pagination={{total: this.state.pagination.total, onChange: this.onChange}} style={{background: '#fff', padding: '40px 20px 0 20px', border: '1px solid #ebeef5', borderRadius: '6px', boxShadow: '0 2px 12px 0 rgba(0, 0, 0, .1)'}} loading={this.state.pagination.showLoading} />
     )
   }
 }
 
-export default FeedBack
+export default Feedback

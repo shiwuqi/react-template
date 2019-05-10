@@ -5,7 +5,7 @@ import PrivateRoute from '../PrivateRoute'
 import Loading from '../../views/Loading'
 
 const FeedBack = Loadable({
-  loader: () => import('../../views/FeedBack'),
+  loader: () => import('../../views/Feedback'),
   loading: Loading
 })
 
