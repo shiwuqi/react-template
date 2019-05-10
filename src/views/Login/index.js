@@ -39,7 +39,7 @@ class Login extends React.Component {
     const { getFieldDecorator } = this.props.form
     return (
       <div>
-        {/* {this.props.data.isLogin ? <Redirect to={{ pathname: '/layOut/feedBack', query: { id: 'login' } }}></Redirect>:null} */}
+        {/* {this.props.data.isLogin ? <Redirect to={{ pathname: '/layouts/feed', query: { id: 'login' } }}></Redirect>:null} */}
         <div className="login-container">
           <Form onSubmit={this.handleSubmit} className="login-form">
             <h3 className="login-title">后台管理系统</h3>

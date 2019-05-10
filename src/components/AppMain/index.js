@@ -4,8 +4,8 @@ import Loadable from 'react-loadable'
 import PrivateRoute from '../PrivateRoute'
 import Loading from '../../views/Loading'
 
-const FeedBack = Loadable({
-  loader: () => import('../../views/Feedback'),
+const Feed = Loadable({
+  loader: () => import('../../views/Feed'),
   loading: Loading
 })
 
@@ -19,7 +19,7 @@ export default class AppMain extends React.Component {
     return (
       <div style={{ padding: 16, position: 'relative' }}>
         <Switch>
-          <PrivateRoute exact path='/home/feedBack' component={FeedBack} />
+          <PrivateRoute exact path='/home/feed' component={Feed} />
           <PrivateRoute exact path='/home/user' component={User} />
         </Switch>
       </div>

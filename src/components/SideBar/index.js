@@ -5,8 +5,8 @@ const menus = [
   {
     name: '用户反馈',
     icon: 'file-done',
-    path: '/home/feedBack',
-    key: 'feedback'
+    path: '/home/feed',
+    key: 'feed'
   },
   {
     name: '用户信息',

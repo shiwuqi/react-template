@@ -3,18 +3,15 @@ import { Router, Route } from 'react-router-dom'
 import Loadable from 'react-loadable'
 import history from '../utils/history'
 import Loading from '../views/Loading'
-// import Login from '../views/Login'
-// import LayOut from '../views/LayOut'
 import './index.css'
-// import NotFoundPage from '../components/NotFoundPage';
 
 const Login = Loadable({
   loader: () => import('../views/Login'),
   loading: Loading
 })
 
-const LayOut = Loadable({
-  loader: () => import('../views/LayOut'),
+const Layouts = Loadable({
+  loader: () => import('../views/Layouts'),
   loading: Loading
 })
 
@@ -29,7 +26,7 @@ export default class Index extends Component  {
       <Router history={history}>
         <div>
           <Route exact path='/' component={Login} />
-          <Route path='/home' component={LayOut} />
+          <Route path='/home' component={Layouts} />
           <Route path='/404' component={NotFoundPage} />
         </div>
       </Router>

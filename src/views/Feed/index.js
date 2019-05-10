@@ -2,7 +2,7 @@ import React from 'react'
 import { Table, message, Tooltip } from 'antd'
 import request from '../../utils/request'
 
-class Feedback extends React.Component {
+class Feed extends React.Component {
   state = {
     data: [],
     pagination: {
@@ -148,4 +148,4 @@ class Feedback extends React.Component {
   }
 }
 
-export default Feedback
+export default Feed

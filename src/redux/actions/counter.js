@@ -44,7 +44,7 @@ export function requestData({ funcName, url, params, method }) {
     let res = await request(url, params, method)
     if (res.status === '00') {
       Cookies.set('token', res.data.token)
-      history.replace({ pathname: '/home/feedback', query: { id: 'login' } })
+      history.replace({ pathname: '/home/feed', query: { id: 'login' } })
       dispatch(receivePosts())
     } else {
       message.error(res.log)

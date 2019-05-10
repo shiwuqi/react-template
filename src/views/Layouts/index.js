@@ -1,5 +1,5 @@
-import React from './node_modules/react';
-import { Layout } from './node_modules/antd';
+import React from 'react';
+import { Layout } from 'antd';
 import SideBar from '../../components/SideBar';
 import AppMain from '../../components/AppMain';
 import NavBar from '../../components/NavBar'
