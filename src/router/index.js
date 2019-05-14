@@ -20,12 +20,12 @@ const NotFoundPage = Loadable({
   loading: Loading
 })
 
-export default class Index extends Component  {
+export default class Index extends Component {
   render() {
     return (
       <Router history={history}>
         <div>
-          <Route exact path='/' component={Login} />
+          <Route exact path='/(login)?' component={Login} />
           <Route path='/home' component={Layouts} />
           <Route path='/404' component={NotFoundPage} />
         </div>

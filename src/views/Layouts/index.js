@@ -18,22 +18,20 @@ export default class Layouts extends React.Component {
   }
 
   render() {
-    return(
-      <div>
-        <Layout style={{width: '100%', height: '100vh', overflow: 'hidden'}}>
-          <Sider collapsible trigger={null} collapsed={this.state.collapsed}>
-            <SideBar></SideBar>
-          </Sider>
-          <Layout style={{background: '#fff'}}>
-            <Header style={{padding: '0 16px', background: '#fff', boxShadow: '0 2px 6px rgba(99, 99, 99, .15)'}}>
-              <NavBar collapsed={this.state.collapsed} onToggle={this.onToggle} />
-            </Header>
-            <Content>
-              <AppMain></AppMain>
-            </Content>
-          </Layout>
+    return (
+      <Layout style={{ width: '100%', height: '100vh', overflow: 'hidden' }}>
+        <Sider collapsible trigger={null} collapsed={this.state.collapsed}>
+          <SideBar></SideBar>
+        </Sider>
+        <Layout style={{ background: '#fff' }}>
+          <Header style={{ padding: '0 16px', background: '#fff', boxShadow: '0 2px 6px rgba(99, 99, 99, .15)' }}>
+            <NavBar collapsed={this.state.collapsed} onToggle={this.onToggle} />
+          </Header>
+          <Content>
+            <AppMain></AppMain>
+          </Content>
         </Layout>
-      </div>
+      </Layout>
     )
   }
 }

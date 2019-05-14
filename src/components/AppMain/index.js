@@ -14,6 +14,11 @@ const User = Loadable({
   loading: Loading
 })
 
+const Power = Loadable({
+  loader: () => import('../../views/Power'),
+  loading: Loading
+})
+
 export default class AppMain extends React.Component {
   render () {
     return (
@@ -21,6 +26,7 @@ export default class AppMain extends React.Component {
         <Switch>
           <PrivateRoute exact path='/home/feed' component={Feed} />
           <PrivateRoute exact path='/home/user' component={User} />
+          <PrivateRoute exact path='/home/power' component={Power} />
         </Switch>
       </div>
     )

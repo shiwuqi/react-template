@@ -29,33 +29,32 @@ class ContentMenu extends React.Component {
 
   getComponentItems = (data) => {
     return data.map(item => {
-      if (item.children && item.children.length) {
-        return <SubMenu key={item.key} title={<span>{item.icon && <Icon type={item.icon} />}{item.name}</span>}>
-          {this.getComponentItems(item.children)}
-        </SubMenu>
+      if (item.meta) {
+        if (item.children && item.children.length) {
+          return <SubMenu key={item.key} title={<span>{item.icon && <Icon type={item.icon} />}{item.name}</span>}>
+            {this.getComponentItems(item.children)}
+          </SubMenu>
+        }
+        return <MenuItem key={item.key}>
+          <Link to={item.key}>
+            {item.icon && <Icon type={item.icon} />}
+            <span>{item.name}</span>
+          </Link>
+        </MenuItem>
       }
-      return <MenuItem key={item.key}>
-        <Link to={item.key}>
-          {item.icon && <Icon type={item.icon} />}
-          <span>{item.name}</span>
-        </Link>
-      </MenuItem>
     })
   }
 
 
   render() {
-    const { location, match, menus } = this.props
-    console.log(44444, location)
+    const { location, menus } = this.props
     const { pathname } = location
     const items = pathname.split('/')
     const selectedKeys = items[items.length - 1]
     return (
-      <div>
-        <Menu theme="dark" selectedKeys={[selectedKeys]} onClick={({ key }) => this.setState({ selectedKeys: [key] })} mode='inline'>
-          {this.getComponentItems(menus)}
-        </Menu>
-      </div>
+      <Menu theme="dark" selectedKeys={[selectedKeys]} onClick={({ key }) => this.setState({ selectedKeys: [key] })} mode='inline'>
+        {this.getComponentItems(menus)}
+      </Menu>
     )
   }
 }

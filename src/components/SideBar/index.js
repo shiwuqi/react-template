@@ -6,13 +6,21 @@ const menus = [
     name: '用户反馈',
     icon: 'file-done',
     path: '/home/feed',
-    key: 'feed'
+    key: 'feed',
+    meta: true
   },
   {
     name: '用户信息',
     icon: 'user',
     path: '/home/user',
-    key: 'user'
+    key: 'user',
+    meta: true
+  },
+  {
+    name: '权限设置',
+    icon: 'poweroff',
+    key: 'power',
+    meta: true
   }
 ]
 
