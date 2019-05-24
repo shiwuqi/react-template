@@ -1,9 +1,10 @@
 import { fetch } from 'whatwg-fetch'
 import 'es6-promise'
-import { HOST } from '../config';
 import Cookies from 'js-cookie'
 import history from './history'
 import '../mock'
+
+const DOMAIN = process.env.DOMAIN
 
 const codeMessage = {
   200: '服务器成功返回请求的数据。',
@@ -36,7 +37,7 @@ function checkStatus(response) {
 
 function request(url, options, method) {
   options = { ...options, token: Cookies.get('token') || '' }
-  let newUrl = HOST + url
+  let newUrl = DOMAIN + url
   method = !method ? 'get' : method.toUpperCase()
   let newOptions = {}
   if (method === 'POST') {

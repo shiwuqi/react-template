@@ -1,7 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { Form, Icon, Input, Button, Checkbox } from 'antd'
-import './style.css'
+import './style.less'
 import { requestData } from '../../redux/actions/counter'
 import { connect } from 'react-redux'
 
@@ -37,12 +37,13 @@ class Login extends React.Component {
 
   render() {
     const { getFieldDecorator } = this.props.form
+    const lg = 'login'
     return (
       <div>
         {/* {this.props.data.isLogin ? <Redirect to={{ pathname: '/layouts/feed', query: { id: 'login' } }}></Redirect>:null} */}
-        <div className="login-container">
-          <Form onSubmit={this.handleSubmit} className="login-form">
-            <h3 className="login-title">后台管理系统</h3>
+        <div className={lg}>
+          <Form onSubmit={this.handleSubmit} className={`${lg}-form`}>
+            <h3 className={`${lg}-title`}>后台管理系统</h3>
             <FormItem>
               {
                 getFieldDecorator('account', {
@@ -56,7 +57,7 @@ class Login extends React.Component {
               {getFieldDecorator('password', {
                 rules: [{ required: true, message: '请输入密码' }, { validator: this.validatorToPassword }],
               })(
-                <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" placeholder="登录密码" />
+                <Input prefix={<Icon type="lock" style={{ color: 'rgba(0, 0, 0, .25)' }} />} type="password" placeholder="登录密码" />
               )}
             </FormItem>
             <FormItem>
