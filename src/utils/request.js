@@ -36,39 +36,31 @@ function checkStatus(response) {
 }
 
 function request(url, options, method) {
-  options = { ...options, token: Cookies.get('token') || '' }
+  const token = Cookies.get('token') || ''
   let newUrl = DOMAIN + url
-  method = !method ? 'get' : method.toUpperCase()
+  method = !method ? 'GET' : method.toUpperCase()
   let newOptions = {}
   if (method === 'POST') {
-    let ret = ''
-    for (var it in options) {
-      ret += encodeURIComponent(it) + '=' + encodeURIComponent(options[it]) + '&'
-    }
-    if (!(newOptions.body instanceof FormData)) {
-      newOptions = {
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded'
-        },
-        body: ret,
-        method: method
-      }
-    } else {
-      newOptions.headers = {
+    newOptions = {
+      headers: {
         Accept: 'application/json',
-        ...options
-      };
+        token,
+      },
+      body: JSON.stringify(options),
+      method,
     }
   } else {
-    let params = []
-    Object.keys(options).forEach(key => {
-      params.push(key + '=' + options[key])
-      if (newUrl.search(/\?/) === -1) {
-        newUrl += '?' + params.join('&')
-      } else {
-        newUrl += '&' + params.join('&')
-      }
-    })
+    if (!!options) {
+      let params = []
+      Object.keys(options).forEach(key => {
+        params.push(key + '=' + options[key])
+        if (newUrl.search(/\?/) === -1) {
+          newUrl += '?' + params.join('&')
+        } else {
+          newUrl += '&' + params.join('&')
+        }
+      })
+    }
   }
   return new Promise(async (resolve, reject) => {
     try {

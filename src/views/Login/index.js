@@ -30,7 +30,7 @@ class Login extends React.Component {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        this.props.requestData({ funcName: 'login', url: '/login', params: values, method: 'post' })
+        this.props.requestData('login', '/login', values, 'post')
       }
     });
   }
@@ -89,8 +89,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    requestData: ({ funcName, url, params, method }) => {
-      dispatch(requestData({ funcName, url, params, method }))
+    requestData: (funcName, url, params, method) => {
+      dispatch(requestData(funcName, url, params, method))
     }
   }
 }

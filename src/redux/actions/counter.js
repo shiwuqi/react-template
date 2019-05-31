@@ -38,7 +38,8 @@ export function receivePosts(data, category) {
   }
 }
 
-export function requestData({ funcName, url, params, method }) {
+export function requestData(funcName, url, params, method) {
+  console.log(funcName, url, params, method)
   return async dispatch => {
     dispatch(requestPosts(funcName))
     let res = await request(url, params, method)

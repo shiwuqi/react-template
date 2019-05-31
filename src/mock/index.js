@@ -16,27 +16,28 @@ function createList() {
   return list
 }
 
-if (process.env.NODE_ENV === 'development') {
-  const login = {
-    status: '00',
-    log: '登录成功',
-    data: {
-      token: Random.guid()
-    }
+// if (process.env.NODE_ENV === 'development') {
+  
+// }
+const login = {
+  status: '00',
+  log: '登录成功',
+  data: {
+    token: Random.guid()
   }
-  const logOut = {
-    status: '00',
-    log: '退出成功'
-  }
-  const tableList = {
-    status: '00',
-    log: '获取成功',
-    data: {
-      list: createList(),
-      pageNum: 10
-    }
-  }
-  Mock.mock(/\/login/, 'post', login)
-  Mock.mock(/\/logOut/, 'get', logOut)
-  Mock.mock(/\/list/, 'get', tableList)
 }
+const logOut = {
+  status: '00',
+  log: '退出成功'
+}
+const tableList = {
+  status: '00',
+  log: '获取成功',
+  data: {
+    list: createList(),
+    pageNum: 10
+  }
+}
+Mock.mock(/\/login/, 'post', login)
+Mock.mock(/\/logOut/, 'get', logOut)
+Mock.mock(/\/list/, 'get', tableList)
