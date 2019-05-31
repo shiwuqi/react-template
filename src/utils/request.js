@@ -37,14 +37,14 @@ function checkStatus(response) {
 
 function request(url, options, method) {
   const token = Cookies.get('token') || ''
-  let newUrl = DOMAIN + url
+  let newUrl = url
   method = !method ? 'GET' : method.toUpperCase()
   let newOptions = {}
   if (method === 'POST') {
     newOptions = {
       headers: {
-        Accept: 'application/json',
-        token,
+        'content-type': 'application/json',
+        'token': token,
       },
       body: JSON.stringify(options),
       method,
