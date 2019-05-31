@@ -37,7 +37,7 @@ function checkStatus(response) {
 
 function request(url, options, method) {
   const token = Cookies.get('token') || ''
-  let newUrl = url
+  let newUrl = DOMAIN + url
   method = !method ? 'GET' : method.toUpperCase()
   let newOptions = {}
   if (method === 'POST') {
