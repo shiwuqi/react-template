@@ -50,6 +50,11 @@ function request(url, options, method) {
       method,
     }
   } else {
+    newOptions = {
+      headers: {
+        token,
+      },
+    }
     if (!!options) {
       let params = []
       Object.keys(options).forEach(key => {
