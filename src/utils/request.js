@@ -30,7 +30,7 @@ function request(url, options, method) {
       let params = []
       Object.keys(options).forEach(key => {
         params.push(key + '=' + options[key])
-        if (newUrl.search(/\?/) === -1) {
+        if (url.search(/\?/) === -1) {
           url += '?' + params.join('&')
         } else {
           url += '&' + params.join('&')
