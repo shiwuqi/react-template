@@ -108,14 +108,14 @@ class Feed extends React.Component {
       {
         title: '姓名',
         dataIndex: 'name',
-        width: 200,
+        width: 120,
         align: 'center',
         fixed: 'left'
       },
       {
         title: '年龄',
         dataIndex: 'age',
-        width: 280,
+        width: 120,
         align: 'center'
       },
       {
@@ -126,7 +126,7 @@ class Feed extends React.Component {
             <span style={userProblem}>{!record.address ? '暂无地址' : record.address}</span>
           </Tooltip>
         ),
-        width: 280,
+        width: 260,
         align: 'center'
       },
       {
@@ -138,7 +138,7 @@ class Feed extends React.Component {
       {
         title: '邮箱',
         dataIndex: 'email',
-        width: 280,
+        width: 260,
         align: 'center'
       }
     ]
