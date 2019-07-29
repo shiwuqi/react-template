@@ -2,7 +2,7 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { Form, Icon, Input, Button, Checkbox } from 'antd'
 import './style.less'
-import { requestData } from '../../redux/actions/counter'
+import { loginIn } from '../../redux/actions/login'
 import { connect } from 'react-redux'
 
 const FormItem = Form.Item
@@ -30,7 +30,7 @@ class Login extends React.Component {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        this.props.requestData('login', '/login', values, 'post')
+        this.props.loginIn('/login', values, 'post')
       }
     });
   }
@@ -89,8 +89,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    requestData: (funcName, url, params, method) => {
-      dispatch(requestData(funcName, url, params, method))
+    loginIn: (url, params, method) => {
+      dispatch(loginIn(url, params, method))
     }
   }
 }

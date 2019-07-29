@@ -1,0 +1,26 @@
+import request from '../../utils/request'
+import Cookies from 'js-cookie'
+import { message } from 'antd'
+import history from '../../utils/history'
+import { LOGIN_RESPONSE, LOGIN_RECEIVE } from '../constants'
+
+
+export function loginIn(url, params, method) {
+  return async dispatch => {
+    dispatch({
+      type: LOGIN_RESPONSE
+    })
+    const res = await request(url, params, method)
+    console.log(res);
+    if (res.status === '00') {
+      Cookies.set('token', res.data.token)
+      history.replace({ pathname: '/page/feed', query: { id: 'login' } })
+      dispatch({
+        type: LOGIN_RECEIVE,
+        data: res
+      })
+    } else {
+      message.error(res.log)
+    }
+  }
+}
