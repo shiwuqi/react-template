@@ -7,20 +7,23 @@ import { LOGIN_RESPONSE, LOGIN_RECEIVE } from '../constants'
 
 export function loginIn(url, params, method) {
   return async dispatch => {
-    dispatch({
-      type: LOGIN_RESPONSE
-    })
-    const res = await request(url, params, method)
-    console.log(res);
-    if (res.status === '00') {
-      Cookies.set('token', res.data.token)
-      history.replace({ pathname: '/page/feed', query: { id: 'login' } })
+    try {
       dispatch({
-        type: LOGIN_RECEIVE,
-        data: res
+        type: LOGIN_RESPONSE
       })
-    } else {
-      message.error(res.log)
+      const res = await request(url, params, method)
+      if (res.status === '00') {
+        Cookies.set('token', res.data.token)
+        history.replace({ pathname: '/page/feed', query: { id: 'login' } })
+        dispatch({
+          type: LOGIN_RECEIVE,
+          data: res
+        })
+      } else {
+        message.error(res.log)
+      }
+    } catch (e) {
+      message.error("登录失败")
     }
   }
 }
