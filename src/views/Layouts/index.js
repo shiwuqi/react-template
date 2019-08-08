@@ -19,7 +19,7 @@ export default class Layouts extends React.Component {
 
   render() {
     return (
-      <Layout style={{ width: '100%', height: '100vh', overflow: 'hidden' }}>
+      <Layout style={{ width: '100%' }}>
         <Sider collapsible trigger={null} collapsed={this.state.collapsed}>
           <SideBar></SideBar>
         </Sider>
