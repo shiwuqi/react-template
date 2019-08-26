@@ -67,10 +67,13 @@ const getStyleLoaders = (cssOptions, preProcessor) => {
       },
     },
   ];
-  if (preProcessor) {
+  if (preProcessor && preProcessor === "less-loader") {
     loaders.push({
       loader: require.resolve(preProcessor),
       options: {
+        modifyVars: {
+          "primary-color": "#45c8dc"
+        },
         javascriptEnabled: true
       },
     });
