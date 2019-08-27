@@ -101,16 +101,14 @@ class Feed extends React.Component {
       {
         title: 'union',
         dataIndex: 'id',
-        width: 200,
+        width: 180,
         align: 'center',
-        fixed: 'left'
       },
       {
         title: '姓名',
         dataIndex: 'name',
         width: 120,
-        align: 'center',
-        fixed: 'left'
+        align: 'center'
       },
       {
         title: '年龄',
@@ -126,19 +124,19 @@ class Feed extends React.Component {
             <span style={userProblem}>{!record.address ? '暂无地址' : record.address}</span>
           </Tooltip>
         ),
-        width: 260,
+        width: 200,
         align: 'center'
       },
       {
         title: '日期',
         dataIndex: 'data_time',
-        width: 200,
+        width: 180,
         align: 'center'
       },
       {
         title: '邮箱',
         dataIndex: 'email',
-        width: 260,
+        width: 200,
         align: 'center'
       }
     ]

@@ -1,35 +1,37 @@
-import React from 'react'
+import React, { Suspense, lazy } from 'react'
 import { Switch, Route } from 'react-router-dom'
-import Loadable from 'react-loadable'
-import Loading from '../../views/Loading'
+import { Spin } from 'antd'
 
 const subRoutes = [
   {
-    path: "/page/feed",
-    component: Loadable({
-      loader: () => import('../../views/Feed'),
-      loading: Loading
-    })
+    path: '/page/feed',
+    component: lazy(() => import('../../views/Feed'))
   },
   {
-    path: "/page/user",
-    component: Loadable({
-      loader: () => import('../../views/User'),
-      loading: Loading
-    })
+    path: '/page/user',
+    component: lazy(() => import('../../views/User'))
   },
   {
-    path: "/page/power",
-    component: Loadable({
-      loader: () => import('../../views/Power'),
-      loading: Loading
-    })
+    path: '/page/power',
+    component: lazy(() => import('../../views/Power'))
   }
 ]
+
+const styles = {
+  loading: {
+    widht: '100%',
+    height: '100vh',
+    textAlign: 'center',
+    lineHeight: '100vh'
+  }
+}
 
 function AppMain() {
   return (
     <div style={{ padding: 16, position: 'relative' }}>
+      <Suspense fallback={<div style={styles.loading}>
+        <Spin />
+      </div>}>
         <Switch>
           {
             subRoutes.map((item, index) => {
@@ -37,7 +39,8 @@ function AppMain() {
             })
           }
         </Switch>
-      </div>
+      </Suspense>
+    </div>
   )
 }
 

@@ -10,7 +10,7 @@ const styles = {
   }
 }
 
-export default class Loading extends React.Component {
+export default class Loading extends React.PureComponent {
   render() {
     return (
       <div style={styles.loading}>
