@@ -18,6 +18,7 @@
     "case-sensitive-paths-webpack-plugin": "2.1.2",
     "chalk": "2.4.1",
     "compression-webpack-plugin": "^2.0.0",
+    "concurrently": "^4.1.2",
     "css-loader": "1.0.0",
     "dotenv": "6.0.0",
     "dotenv-expand": "4.2.0",
@@ -41,10 +42,21 @@
     "jest-pnp-resolver": "1.0.1",
     "jest-resolve": "23.6.0",
     "js-cookie": "^2.2.0",
+    "jsonwebtoken": "^8.5.1",
+    "koa": "^2.8.1",
+    "koa-bodyparser": "^4.2.1",
+    "koa-jwt": "^3.6.0",
+    "koa-router": "^7.4.0",
+    "koa-static": "^5.0.0",
+    "koa-unless": "^1.0.7",
+    "koa2-cors": "^2.0.6",
     "less": "^3.8.1",
     "less-loader": "^4.1.0",
+    "md5": "^2.2.1",
     "mini-css-extract-plugin": "0.4.3",
     "mockjs": "^1.0.1-beta3",
+    "mongodb": "^3.3.2",
+    "nodemon": "^1.19.1",
     "optimize-css-assets-webpack-plugin": "5.0.1",
     "pnp-webpack-plugin": "1.1.0",
     "postcss-flexbugs-fixes": "4.1.0",
@@ -74,6 +86,7 @@
   },
   "scripts": {
     "start": "node scripts/start.js",
+    "server": "concurrently \"nodemon server/index.js\" \"npm run start\"",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js"
   },
@@ -148,5 +161,5 @@
       ]
     ]
   },
-  "proxy": "https://a.com"
+  "proxy": "http://localhost:3009"
 }

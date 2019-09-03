@@ -1,13 +1,12 @@
 import { fetch } from 'whatwg-fetch'
 import 'es6-promise'
-import Cookies from 'js-cookie'
 import history from './history'
-import '../mock'
+// import '../mock'
 
 const DOMAIN = process.env.DOMAIN
 
 function request(url, options, method) {
-  const token = Cookies.get('token') || ''
+  const token = localStorage.getItem('token') || ''
   url = DOMAIN + url
   method = !method ? 'GET' : method.toUpperCase()
   let newOptions = {}
@@ -15,7 +14,7 @@ function request(url, options, method) {
     newOptions = {
       headers: {
         'content-type': 'application/json',
-        'token': token,
+        'authorization': !token ? '' : 'Bearer ' + token,
       },
       body: JSON.stringify(options),
       method,
@@ -23,7 +22,7 @@ function request(url, options, method) {
   } else {
     newOptions = {
       headers: {
-        token,
+        'authorization': !token ? '' : 'Bearer ' + token,
       },
     }
     if (!!options) {
@@ -42,7 +41,7 @@ function request(url, options, method) {
     try {
       const response = await fetch(url, newOptions)
       const res = newOptions.method === 'DELETE' ? response.text() : response.json()
-      if (res.status === '02') {
+      if (res.code === 401) {
         history.replace('/')
         return
       }

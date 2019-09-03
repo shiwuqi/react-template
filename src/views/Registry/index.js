@@ -1,21 +1,28 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import { Form, Icon, Input, Button } from 'antd'
-import './style.less'
-import { loginIn } from '../../redux/actions/login'
-import { connect } from 'react-redux'
-import md5 from 'md5'
+import { Form, Icon, Input, Button } from 'antd';
+import history from '../../utils/history';
+import '../Login/style.less';
+import { checkUserName, userRegistry } from '../../api/login';
+import md5 from 'md5';
 
 const FormItem = Form.Item
 
 @withRouter
-class Login extends React.Component {
+class Registry extends React.Component {
 
   validatorToAccount = (rule, value, callback) => {
     if (!value) {
       callback('请输入账号')
     } else {
-      callback()
+      // 查询账号是否已注册
+      checkUserName({ account: value }).then(res => {
+        if (res.code === 200) {
+          callback()
+        } else if (res.code === 201) {
+          callback('账号已注册')
+        }
+      })
     }
   }
 
@@ -33,11 +40,16 @@ class Login extends React.Component {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
+        // 调用注册接口
         const params = {
           ...values,
           password: md5(values.password)
         }
-        this.props.loginIn('/login', params, 'post')
+        userRegistry(params).then(res => {
+          if (res.code === 200) {
+            history.replace({ pathname: '/' })
+          }
+        })
       }
     });
   }
@@ -49,29 +61,28 @@ class Login extends React.Component {
       <div>
         <div className={lg}>
           <Form onSubmit={this.handleSubmit} className={`${lg}-form`}>
-            <h3 className={`${lg}-title`}>后台管理系统</h3>
+            <h3 className={`${lg}-title`}>注册</h3>
             <FormItem>
               {
                 getFieldDecorator('account', {
-                  rules: [{ required: true, message: '账号不能为空' }, { validator: this.validatorToAccount }]
+                  rules: [{ validator: this.validatorToAccount }]
                 })(
-                  <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="登录账号" />
+                  <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="注册账号" />
                 )
               }
             </FormItem>
             <FormItem>
               {getFieldDecorator('password', {
-                rules: [{ required: true, message: '请输入密码' }, { validator: this.validatorToPassword }],
+                rules: [{ validator: this.validatorToPassword }],
               })(
-                <Input prefix={<Icon type="lock" style={{ color: 'rgba(0, 0, 0, .25)' }} />} type="password" placeholder="登录密码" />
+                <Input prefix={<Icon type="lock" style={{ color: 'rgba(0, 0, 0, .25)' }} />} type="password" placeholder="注册密码" />
               )}
             </FormItem>
             <FormItem>
               <Button type="primary" htmlType="submit" className="login-form-button">
-                登录
+                注册
               </Button>
             </FormItem>
-            <a href="/registry" style={{ color: '#fff' }}>去注册</a>
           </Form>
         </div>
       </div>
@@ -79,20 +90,6 @@ class Login extends React.Component {
   }
 }
 
-Login = Form.create({})(Login)
+Registry = Form.create({})(Registry)
 
-const mapStateToProps = (state) => {
-  return {
-    data: state.counter
-  }
-}
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    loginIn: (url, params, method) => {
-      dispatch(loginIn(url, params, method))
-    }
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Login)
+export default Registry

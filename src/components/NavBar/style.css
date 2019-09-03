@@ -1,3 +1,7 @@
+ul, li {
+  list-style: none;
+}
+
 .header-ul {
   display: flex;
   display: -webkit-flex;

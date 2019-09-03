@@ -10,6 +10,10 @@ const routes = [
     component: lazy(() => import('../views/Login'))
   },
   {
+    path: '/registry',
+    component: lazy(() => import('../views/Registry'))
+  },
+  {
     path: '/page',
     component: lazy(() => import('../views/Layouts'))
   },

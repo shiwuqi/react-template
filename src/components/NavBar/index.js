@@ -34,11 +34,11 @@ class HeaderBar extends React.Component {
   logOut = async () => {
     const res = await request('/logOut')
     try {
-      if (res.status === '00') {
-        Cookies.remove('token')
+      if (res.code === 200) {
+        localStorage.removeItem('token')
         this.props.history.replace({pathname: '/'})
       } else {
-        message.error(res.log)
+        message.error(res.message)
       }
     } catch (e) {
       console.log(e)

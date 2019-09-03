@@ -1,10 +1,10 @@
 import React from "react";
-import { Route } from 'react-router-dom';
+import { Route, withRouter } from 'react-router-dom';
 import history from '../utils/history';
 import PropTypes from 'prop-types';
-import Cookies from 'js-cookie';
 
-export default class RouterBeforeEach extends React.PureComponent {
+@withRouter
+class RouterBeforeEach extends React.PureComponent {
   static defaultProps = {
     routes: []
   }
@@ -14,8 +14,9 @@ export default class RouterBeforeEach extends React.PureComponent {
   }
 
   componentDidMount() {
-    const token = Cookies.get("token") || "";
-    if (!token) {
+    const { location } = this.props
+    const token = localStorage.getItem("token") || "";
+    if (!token && !/\/registry/.test(location.pathname)) {
       history.replace("/");
     }
   }
@@ -33,3 +34,5 @@ export default class RouterBeforeEach extends React.PureComponent {
     )
   }
 }
+
+export default RouterBeforeEach

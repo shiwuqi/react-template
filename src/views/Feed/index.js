@@ -66,11 +66,11 @@ class Feed extends React.Component {
   }
 
   querySystemFeedBack = async (params) => {
-    const res = await request(`/list`, params)
-    if (res.status === '00') {
+    const res = await request(`/feed`, params)
+    if (res.code === 200) {
       this.setState({
         'data': res.data.list,
-        'pagination': Object.assign({}, this.state.pagination, { total: res.data.pageNum }, { showLoading: false })
+        'pagination': Object.assign({}, this.state.pagination, { total: res.data.total }, { showLoading: false })
       })
     } else {
       this.setState({
@@ -141,7 +141,7 @@ class Feed extends React.Component {
       }
     ]
     return (
-      <Table bordered columns={columns} dataSource={this.state.data} rowKey={record => record.id} pagination={{total: this.state.pagination.total, onChange: this.onChange}} style={{background: '#fff', padding: '40px 20px 0 20px', border: '1px solid #ebeef5', borderRadius: '6px', boxShadow: '0 2px 12px 0 rgba(0, 0, 0, .1)'}} loading={this.state.pagination.showLoading} />
+      <Table bordered columns={columns} dataSource={this.state.data} rowKey={record => record.id} pagination={{total: this.state.pagination.total, onChange: this.onChange}} style={{minHeight: '80vh', background: '#fff', padding: '40px 20px 0 20px', border: '1px solid #ebeef5', borderRadius: '6px', boxShadow: '0 2px 12px 0 rgba(0, 0, 0, .1)'}} loading={this.state.pagination.showLoading} />
     )
   }
 }

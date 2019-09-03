@@ -1,5 +1,4 @@
 import request from '../../utils/request'
-import Cookies from 'js-cookie'
 import { message } from 'antd'
 import history from '../../utils/history'
 import { LOGIN_RESPONSE, LOGIN_RECEIVE } from '../constants'
@@ -12,15 +11,16 @@ export function loginIn(url, params, method) {
         type: LOGIN_RESPONSE
       })
       const res = await request(url, params, method)
-      if (res.status === '00') {
-        Cookies.set('token', res.data.token)
+      if (res.code === 200) {
+        message.success(res.message)
+        localStorage.setItem("token", res.data)
         history.replace({ pathname: '/page/feed', query: { id: 'login' } })
         dispatch({
           type: LOGIN_RECEIVE,
           data: res
         })
       } else {
-        message.error(res.log)
+        message.error(res.message)
       }
     } catch (e) {
       message.error("登录失败")
