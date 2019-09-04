@@ -42,6 +42,7 @@ function request(url, options, method) {
       const response = await fetch(url, newOptions)
       const res = newOptions.method === 'DELETE' ? response.text() : response.json()
       if (res.code === 401) {
+        localStorage.removeItem('token')
         history.replace('/')
         return
       }

@@ -28,7 +28,15 @@ app.use(async (ctx, next) => {
 app.use(async (ctx, next) => {
   const token = ctx.headers.authorization;
   if (!!token) {
-    const data = await verToken(token)
+    try {
+      const data = await verToken(token)
+    } catch (e) {
+      ctx.status = 401;
+      ctx.body = {
+        status: 401,
+        msg: '登录过期，请重新登录'
+      }
+    }
   }
   await next();
 })
