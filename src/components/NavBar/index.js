@@ -12,7 +12,7 @@ class HeaderBar extends React.Component {
     arrow: 'arrows-alt'
   }
 
-  componentWillMount() {
+  componentDidMount() {
     console.log('props', this.props)
     screenfull.onchange(() => {
       this.setState({
