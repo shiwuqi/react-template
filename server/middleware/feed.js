@@ -3,7 +3,6 @@ const feed = new Router()
 const { ConnectMongo } = require('../utils/mongo')
 
 let connectMongo = new ConnectMongo()
-connectMongo.open()
 
 feed
   .get('/', async (ctx, next) => {

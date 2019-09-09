@@ -3,7 +3,6 @@ const registry = new Router()
 const { ConnectMongo } = require('../utils/mongo')
 
 let connectMongo = new ConnectMongo()
-connectMongo.open()
 
 registry
   .post('/', async (ctx, next) => {

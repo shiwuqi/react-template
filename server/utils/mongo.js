@@ -5,6 +5,7 @@ class ConnectMongo {
   constructor() {
     this.url = MongoUrl
     this.db
+    this.open()
   }
   open() { // 连接数据库
     const _this = this

@@ -4,7 +4,6 @@ const { setToken } = require('../utils/token_verify')
 const { ConnectMongo } = require('../utils/mongo')
 
 let connectMongo = new ConnectMongo()
-connectMongo.open()
 
 logout
   .get('/', async (ctx, next) => {
