@@ -18,8 +18,8 @@ app.use(async (ctx, next) => {
     if (err.status === 401) {
       ctx.status = 401;
       ctx.body = {
-        status: 401,
-        msg: '登录过期，请重新登录'
+        code: 401,
+        message: '登录过期，请重新登录'
       }
     }
   })
@@ -33,8 +33,8 @@ app.use(async (ctx, next) => {
     } catch (e) {
       ctx.status = 401;
       ctx.body = {
-        status: 401,
-        msg: '登录过期，请重新登录'
+        code: 401,
+        message: '登录过期，请重新登录'
       }
     }
   }

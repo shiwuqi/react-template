@@ -40,12 +40,12 @@ function request(url, options, method) {
   return new Promise(async (resolve, reject) => {
     try {
       const response = await fetch(url, newOptions)
-      const res = newOptions.method === 'DELETE' ? response.text() : response.json()
-      if (res.code === 401) {
+      if (response.status === 401) {
         localStorage.removeItem('token')
         history.replace('/')
         return
       }
+      const res = newOptions.method === 'DELETE' ? response.text() : response.json()
       resolve(res)
     } catch (e) {
       reject(e)
