@@ -20,7 +20,6 @@ exports.setToken = function(account, id) {
 exports.verToken = function(token) {
   return new Promise((resolve, reject) => {
     jsonwebtoken.verify(token.split(' ')[1], secret, function(err, data) {
-      console.log(err)
       if (err) {
         reject(err)
       }
