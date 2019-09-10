@@ -1,6 +1,7 @@
 import React from "react";
 import { Route, Redirect, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { message } from 'antd';
 
 @withRouter
 class RouterBeforeEach extends React.PureComponent {
@@ -16,6 +17,7 @@ class RouterBeforeEach extends React.PureComponent {
     const { routes, location } = this.props;
     const token = localStorage.getItem("token") || "";
     if (!token && location.pathname !== '/' && !/\/registry/.test(location.pathname)) {
+      message.warning('请先登录');
       return (
         <Redirect to='/' />
       )
