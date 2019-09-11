@@ -30,6 +30,7 @@ app.use(async (ctx, next) => {
   if (!!token) {
     try {
       const data = await verToken(token)
+      ctx.request.userInfo = data
     } catch (e) {
       ctx.status = 401;
       ctx.body = {

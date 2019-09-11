@@ -6,6 +6,7 @@ let connectMongo = new ConnectMongo()
 
 feed
   .get('/', async (ctx, next) => {
+    const { userInfo } = ctx.request
     ctx.response.body = {
       code: 200,
       message: "成功",

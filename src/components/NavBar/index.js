@@ -4,7 +4,6 @@ import screenfull from 'screenfull'
 import { Button, Icon, Dropdown, Menu, message } from 'antd'
 import './style.css'
 import request from '../../utils/request'
-import Cookies from 'js-cookie'
 
 @withRouter
 class HeaderBar extends React.Component {
@@ -13,7 +12,6 @@ class HeaderBar extends React.Component {
   }
 
   componentDidMount() {
-    console.log('props', this.props)
     screenfull.onchange(() => {
       this.setState({
         arrow: screenfull.isFullscreen ? 'shrink' : 'arrows-alt'

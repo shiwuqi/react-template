@@ -9,7 +9,8 @@ class Feed extends React.Component {
       total: 0,
       defaultCurrent: 1,
       showLoading: true
-    }
+    },
+    modalVisible: true
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
@@ -141,7 +142,9 @@ class Feed extends React.Component {
       }
     ]
     return (
-      <Table bordered columns={columns} dataSource={this.state.data} rowKey={record => record.id} pagination={{total: this.state.pagination.total, onChange: this.onChange}} style={{minHeight: '80vh', background: '#fff', padding: '40px 20px 0 20px', border: '1px solid #ebeef5', borderRadius: '6px', boxShadow: '0 2px 12px 0 rgba(0, 0, 0, .1)'}} loading={this.state.pagination.showLoading} />
+      <div style={{minHeight: '80vh', background: '#fff', padding: '20px 20px 0 20px', border: '1px solid #ebeef5', borderRadius: '6px', boxShadow: '0 2px 12px 0 rgba(0, 0, 0, .1)'}}>
+        <Table bordered columns={columns} dataSource={this.state.data} rowKey={record => record.id} pagination={{total: this.state.pagination.total, onChange: this.onChange}} loading={this.state.pagination.showLoading} />
+      </div>
     )
   }
 }
