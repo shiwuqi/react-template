@@ -2,7 +2,7 @@ const jsonwebtoken = require('jsonwebtoken')
 const { secret } = require('../config')
 
 // 生成token
-exports.setToken = function(account, id) {
+const setToken = function(account, id) {
   return new Promise((resolve, reject) => {
     jsonwebtoken.sign({
       account,
@@ -17,7 +17,7 @@ exports.setToken = function(account, id) {
 }
 
 // 解析token
-exports.verToken = function(token) {
+const verToken = function(token) {
   return new Promise((resolve, reject) => {
     jsonwebtoken.verify(token.split(' ')[1], secret, function(err, data) {
       if (err) {
@@ -26,4 +26,9 @@ exports.verToken = function(token) {
       resolve(data);
     });
   })
+}
+
+module.exports = {
+  setToken,
+  verToken
 }

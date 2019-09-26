@@ -1,13 +1,11 @@
 const Koa = require('koa')
-const fs = require('fs')
 const path = require('path')
 const app = new Koa()
-const Router = require('koa-router')
-const router = new Router()
 const cors = require('koa2-cors');
 const _static = require('koa-static') // 加载静态资源 localhost:3009/images/men.png
 const bodyParser = require('koa-bodyparser')  // 获取post请求参数
 const jwt = require('koa-jwt')
+const { router } = require('./routes')
 const { secret } = require('./config')
 const { verToken } = require('./utils/token_verify')
 
@@ -58,13 +56,6 @@ app.use(async (ctx, next) => {
     ctx.response.body = 'Hello!'
   }
   await next()
-})
-
-let pages = fs.readdirSync(path.join(__dirname, './middleware'))
-
-pages.forEach(item => {
-  let module = require(path.join(__dirname, `./middleware/${item}`))
-  router.use('/' + item.replace('.js', ''), module.routes(), module.allowedMethods())
 })
 
 app.use(router.routes())

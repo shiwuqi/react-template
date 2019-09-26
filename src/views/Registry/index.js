@@ -65,7 +65,8 @@ class Registry extends React.Component {
             <FormItem>
               {
                 getFieldDecorator('account', {
-                  rules: [{ validator: this.validatorToAccount }]
+                  rules: [{ validator: this.validatorToAccount }],
+                  validateTrigger: "onBlur"
                 })(
                   <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="注册账号" />
                 )
@@ -74,6 +75,7 @@ class Registry extends React.Component {
             <FormItem>
               {getFieldDecorator('password', {
                 rules: [{ validator: this.validatorToPassword }],
+                validateTrigger: "onBlur"
               })(
                 <Input prefix={<Icon type="lock" style={{ color: 'rgba(0, 0, 0, .25)' }} />} type="password" placeholder="注册密码" />
               )}
