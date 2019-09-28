@@ -1,22 +1,27 @@
-import React from 'react';
-import { withRouter } from 'react-router-dom';
+import * as React from 'react';
+import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { Form, Icon, Input, Button } from 'antd';
+import { FormComponentProps } from 'antd/es/form';
 import history from '../../utils/history';
 import '../Login/style.less';
-import { checkUserName, userRegistry } from '../../api/login';
+import { checkUserAccount, userRegistry } from '../../api/login';
 import md5 from 'md5';
 
 const FormItem = Form.Item
 
-@withRouter
-class Registry extends React.Component {
+export interface RegistryFormProps {
+  account: string,
+  password: string,
+}
 
-  validatorToAccount = (rule, value, callback) => {
+class RegistryForm extends React.Component<RegistryFormProps & FormComponentProps & RouteComponentProps> {
+
+  validatorToAccount = (rule: any, value: string, callback: (value?: string) => void) => {
     if (!value) {
       callback('请输入账号')
     } else {
       // 查询账号是否已注册
-      checkUserName({ account: value }).then(res => {
+      checkUserAccount({ account: value }).then(res => {
         if (res.code === 200) {
           callback()
         } else if (res.code === 201) {
@@ -26,7 +31,7 @@ class Registry extends React.Component {
     }
   }
 
-  validatorToPassword = (rule, value, callback) => {
+  validatorToPassword = (rule: any, value: string, callback: (value?: string) => void) => {
     if (!value) {
       callback('请输入密码')
     } else if (value.length < 8 || value.length > 18) {
@@ -36,9 +41,9 @@ class Registry extends React.Component {
     }
   }
 
-  handleSubmit = (e) => {
+  handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    this.props.form.validateFields((err, values) => {
+    this.props.form.validateFields((err: any, values: RegistryFormProps) => {
       if (!err) {
         // 调用注册接口
         const params = {
@@ -92,6 +97,6 @@ class Registry extends React.Component {
   }
 }
 
-Registry = Form.create({})(Registry)
+const Registry = Form.create({})(withRouter(RegistryForm))
 
 export default Registry

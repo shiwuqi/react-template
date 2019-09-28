@@ -1,8 +1,24 @@
 import React from 'react'
 import { Table, message, Tooltip } from 'antd'
+import { ColumnProps } from 'antd/es/table'
 import request from '../../utils/request'
 
-class Feed extends React.Component {
+interface FeedState {
+  data: Array<object>,
+  pagination: {
+    total: number,
+    defaultCurrent: number,
+    showLoading: boolean
+  }
+}
+
+interface Column {
+  key: number,
+  routeKey: string,
+  id: string
+}
+
+class Feed extends React.Component<any, FeedState> {
   state = {
     data: [],
     pagination: {
@@ -13,7 +29,7 @@ class Feed extends React.Component {
     modalVisible: true
   }
 
-  static getDerivedStateFromProps(nextProps, prevState) {
+  static getDerivedStateFromProps(nextProps: any, prevState: FeedState) {
     // 组件实例化后和接受新的props后被调用（包括父组件的props改变）
     // 调用setState()不会触发该方法
     console.log('getDerivedStateFromProps', nextProps, prevState)
@@ -54,7 +70,7 @@ class Feed extends React.Component {
     return null
   }
 
-  componentDidUpdate(prevProps, prevState, snapshot) {
+  componentDidUpdate(prevProps: any, prevState: FeedState, snapshot: any) {
     // 渲染完成后调用一次，这个时候DOM已经渲染了
   }
 
@@ -62,11 +78,11 @@ class Feed extends React.Component {
     // 组件被卸载并销毁之前被调用
   }
 
-  componentDidCatch(error, info) {
+  componentDidCatch(error: Error | null, info: object) {
     // 错误边界只会捕获树中下面组件中的错误，错误边界本身不能捕获错误
   }
 
-  querySystemFeedBack = async (params) => {
+  querySystemFeedBack = async (params?: object): Promise<void> => {
     const res = await request(`/feed`, params)
     if (res.code === 200) {
       this.setState({
@@ -83,7 +99,7 @@ class Feed extends React.Component {
   }
 
   // 改变页数
-  onChange = (page) => {
+  onChange = (page: number) => {
     this.setState({
       'pagination': Object.assign({}, this.state.pagination, { showLoading: true })
     })
@@ -94,11 +110,9 @@ class Feed extends React.Component {
     const userProblem = {
       width: '280px',
       overflow: 'hidden',
-      whiteSpace: 'nowrap',
       textOverflow: 'ellipsis',
-      textAlign: 'center'
     }
-    const columns= [
+    const columns: ColumnProps<Column>[] = [
       {
         title: 'union',
         dataIndex: 'id',
@@ -120,7 +134,7 @@ class Feed extends React.Component {
       {
         title: '地址',
         dataIndex: 'address',
-        render: (text, record) => (
+        render: (text: any, record: any) => (
           <Tooltip placement="top" title={!record.address ? '暂无地址' : record.address}>
             <span style={userProblem}>{!record.address ? '暂无地址' : record.address}</span>
           </Tooltip>

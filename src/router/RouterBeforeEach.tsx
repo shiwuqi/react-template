@@ -1,16 +1,14 @@
-import React from "react";
-import { Route, Redirect, withRouter } from 'react-router-dom';
-import PropTypes from 'prop-types';
+import * as React from "react";
+import { Route, Redirect, withRouter, RouteComponentProps } from 'react-router-dom';
 import { message } from 'antd';
 
-@withRouter
-class RouterBeforeEach extends React.PureComponent {
+interface RProps {
+  routes: ReadonlyArray<any>
+}
+
+class RouterBeforeEach extends React.PureComponent<RProps & RouteComponentProps, any> {
   static defaultProps = {
     routes: []
-  }
-
-  static propTypes = {
-    routes: PropTypes.array
   }
 
   render() {
@@ -25,7 +23,7 @@ class RouterBeforeEach extends React.PureComponent {
       return (
         <div style={{ width: "100%", height: "100%" }}>
           {
-            routes.map(item => {
+            routes.map((item) => {
               return <Route exact={item.path === "/page" ? false : true} {...item} key={item.path} />
             })
           }
@@ -35,4 +33,4 @@ class RouterBeforeEach extends React.PureComponent {
   }
 }
 
-export default RouterBeforeEach
+export default withRouter(RouterBeforeEach)

@@ -1,17 +1,22 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
+import { RouteComponentProps, withRouter } from 'react-router-dom';
 import { Form, Icon, Input, Button } from 'antd'
+import { FormComponentProps } from 'antd/es/form'
 import './style.less'
-import { loginIn } from '../../redux/actions/login'
-import { connect } from 'react-redux'
 import md5 from 'md5'
+import store from '../../redux/store'
+import { loginIn } from '../../redux/actions/login'
 
 const FormItem = Form.Item
 
-@withRouter
-class Login extends React.Component {
+export interface LoginFormProps extends FormComponentProps, RouteComponentProps {
+  account: string,
+  password: string
+}
 
-  validatorToAccount = (rule, value, callback) => {
+class LoginForm extends React.Component<LoginFormProps> {
+
+  validatorToAccount = (rule: any, value: string, callback: (value?: string) => void) => {
     if (!value) {
       callback('请输入账号')
     } else {
@@ -19,7 +24,7 @@ class Login extends React.Component {
     }
   }
 
-  validatorToPassword = (rule, value, callback) => {
+  validatorToPassword = (rule: any, value: string, callback: (value?: string) => void) => {
     if (!value) {
       callback('请输入密码')
     } else if (value.length < 8 || value.length > 18) {
@@ -29,7 +34,7 @@ class Login extends React.Component {
     }
   }
 
-  handleSubmit = (e) => {
+  handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
@@ -37,7 +42,7 @@ class Login extends React.Component {
           ...values,
           password: md5(values.password)
         }
-        this.props.loginIn('/login', params, 'post')
+        store.dispatch(loginIn('/login', params, 'POST'))
       }
     });
   }
@@ -79,20 +84,6 @@ class Login extends React.Component {
   }
 }
 
-Login = Form.create({})(Login)
+const Login = Form.create<LoginFormProps>({})(withRouter(LoginForm))
 
-const mapStateToProps = (state) => {
-  return {
-    data: state.counter
-  }
-}
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    loginIn: (url, params, method) => {
-      dispatch(loginIn(url, params, method))
-    }
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Login)
+export default Login

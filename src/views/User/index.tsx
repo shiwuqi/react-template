@@ -1,6 +1,6 @@
-import React from 'react'
+import * as React from 'react'
 
-class User extends React.Component {
+class User extends React.PureComponent {
 
   render() {
     return (

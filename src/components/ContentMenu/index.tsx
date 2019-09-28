@@ -1,14 +1,21 @@
 import React from 'react';
 import { Menu, Icon } from 'antd';
-import { withRouter, Link } from 'react-router-dom';
-import PropTypes from 'prop-types'
+import { withRouter, Link, RouteComponentProps } from 'react-router-dom';
+import { menusType } from '../SideBar';
 
 const SubMenu = Menu.SubMenu;
 const MenuItem = Menu.Item;
 
-@withRouter
-class ContentMenu extends React.Component {
-  constructor(props) {
+interface CMProps extends RouteComponentProps {
+  menus: menusType[]
+}
+
+interface CMState {
+  selectedKeys: string[]
+}
+
+class ContentMenu extends React.Component<CMProps, CMState> {
+  constructor(props: CMProps) {
     super(props)
     this.state = {
       selectedKeys: []
@@ -19,15 +26,11 @@ class ContentMenu extends React.Component {
     menus: []
   }
 
-  static propTypes = {
-    menus: PropTypes.array
-  }
-
   static test = () => {
 
   }
 
-  getComponentItems = (data) => {
+  getComponentItems = (data: menusType[]) => {
     return data.map(item => {
       if (item.meta) {
         if (item.children && item.children.length) {
@@ -59,4 +62,4 @@ class ContentMenu extends React.Component {
   }
 }
 
-export default ContentMenu
+export default withRouter(ContentMenu)

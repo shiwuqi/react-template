@@ -1,7 +1,16 @@
-import React from 'react';
+import * as React from 'react';
 import ContentMenu from '../ContentMenu'
 
-const menus = [
+export interface menusType {
+  name: string,
+  icon: string,
+  path: string,
+  key: string,
+  meta: boolean,
+  children?: menusType[]
+}
+
+const menus: menusType[] = [
   {
     name: '用户反馈',
     icon: 'file-done',
@@ -36,7 +45,7 @@ const styles = {
 export default class SiderBar extends React.Component {
   render () {
     return (
-      <div style={{height: '100vh', overflowY: 'scroll'}}>
+      <div style={{height: '100vh', overflowY: 'auto'}}>
         <div style={styles.logo}></div>
         <ContentMenu menus={menus} />
       </div>

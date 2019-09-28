@@ -1,32 +1,24 @@
 import React from 'react'
-import { withRouter } from 'react-router-dom'
-import screenfull from 'screenfull'
+import { withRouter, RouteComponentProps } from 'react-router-dom'
 import { Button, Icon, Dropdown, Menu, message } from 'antd'
 import './style.css'
 import request from '../../utils/request'
 
-@withRouter
-class HeaderBar extends React.Component {
+interface HdProps extends RouteComponentProps {
+  
+}
+
+interface HdState {
+  arrow: string
+}
+
+class HeaderBar extends React.Component<HdProps, HdState> {
   state = {
     arrow: 'arrows-alt'
   }
 
   componentDidMount() {
-    screenfull.onchange(() => {
-      this.setState({
-        arrow: screenfull.isFullscreen ? 'shrink' : 'arrows-alt'
-      })
-    })
-  }
-
-  toggle = () => {
-    this.props.onToggle()
-  }
-
-  screenFullToggle = () => {
-    if (screenfull.enabled) {
-      screenfull.toggle()
-    }
+    
   }
 
   logOut = async () => {
@@ -53,12 +45,8 @@ class HeaderBar extends React.Component {
     )
     return (
       <div>
-        <Button type='primary' onClick={this.toggle}>
-          <Icon type={this.props.collapsed ? 'menu-unfold' : 'menu-fold'} />
-        </Button>
         <div style={{float: 'right'}}>
           <ul className='header-ul'>
-            <li><Icon type={this.state.arrow} onClick={this.screenFullToggle}></Icon></li>
             <li>
               <Dropdown overlay={menu} trigger={['hover']}>
                 <img src={require('./images/default_avatar.jpg')} style={{width: '40px', height: '40px', borderRadius: '50%'}} alt="" />
@@ -71,4 +59,4 @@ class HeaderBar extends React.Component {
   }
 }
 
-export default HeaderBar
+export default withRouter(HeaderBar)
