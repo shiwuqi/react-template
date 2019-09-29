@@ -20,7 +20,7 @@ const menus: menusType[] = [
       {
         name: '用户反馈',
         path: '/page/feed',
-        key: 'feed',
+        key: '/page/feed',
         meta: true
       }
     ]
@@ -29,19 +29,19 @@ const menus: menusType[] = [
     name: '用户信息',
     icon: 'user',
     path: '/page/user',
-    key: 'user',
+    key: '/page/user',
     meta: true
   },
   {
     name: 'Hook',
     icon: 'code',
     path: '/page/hook',
-    key: 'hook',
+    key: '/page/hook',
     meta: true
   }
 ]
 
-const openKey: string[] = ['feed']
+const openKey: string[] = ['/page/feed']
 
 const styles = {
   logo: {

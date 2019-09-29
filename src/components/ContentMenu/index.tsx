@@ -25,7 +25,7 @@ class ContentMenu extends React.Component<CMProps, CMState> {
 
   static defaultProps = {
     menus: [],
-    openKey: ['feed']
+    openKey: ['/page/feed']
   }
 
   static test = () => {
@@ -54,8 +54,7 @@ class ContentMenu extends React.Component<CMProps, CMState> {
   render() {
     const { location, menus, openKey } = this.props
     const { pathname } = location
-    const items = pathname.split('/')
-    const selectedKeys = items[items.length - 1]
+    const selectedKeys = pathname
     return (
       <Menu theme="dark" defaultOpenKeys={openKey} selectedKeys={[selectedKeys]} onClick={({ key }) => this.setState({ selectedKeys: [key] })} mode='inline'>
         {this.getComponentItems(menus)}
