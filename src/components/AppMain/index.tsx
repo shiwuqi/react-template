@@ -12,8 +12,8 @@ const subRoutes: ReadonlyArray<any> = [
     component: React.lazy(() => import('../../views/User'))
   },
   {
-    path: '/page/power',
-    component: React.lazy(() => import('../../views/Power'))
+    path: '/page/hook',
+    component: React.lazy(() => import('../../views/Hook'))
   }
 ]
 

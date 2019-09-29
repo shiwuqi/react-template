@@ -7,7 +7,8 @@ const SubMenu = Menu.SubMenu;
 const MenuItem = Menu.Item;
 
 interface CMProps extends RouteComponentProps {
-  menus: menusType[]
+  menus: menusType[],
+  openKey: string[]
 }
 
 interface CMState {
@@ -23,7 +24,8 @@ class ContentMenu extends React.Component<CMProps, CMState> {
   }
 
   static defaultProps = {
-    menus: []
+    menus: [],
+    openKey: ['feed']
   }
 
   static test = () => {
@@ -50,12 +52,12 @@ class ContentMenu extends React.Component<CMProps, CMState> {
 
 
   render() {
-    const { location, menus } = this.props
+    const { location, menus, openKey } = this.props
     const { pathname } = location
     const items = pathname.split('/')
     const selectedKeys = items[items.length - 1]
     return (
-      <Menu theme="dark" selectedKeys={[selectedKeys]} onClick={({ key }) => this.setState({ selectedKeys: [key] })} mode='inline'>
+      <Menu theme="dark" defaultOpenKeys={openKey} selectedKeys={[selectedKeys]} onClick={({ key }) => this.setState({ selectedKeys: [key] })} mode='inline'>
         {this.getComponentItems(menus)}
       </Menu>
     )

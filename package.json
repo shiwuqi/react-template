@@ -173,5 +173,5 @@
       ]
     ]
   },
-  "proxy": "http://localhost:3009"
+  "proxy": "http://localhost:3009/rc/serve"
 }

@@ -11,6 +11,10 @@ const { verToken } = require('./utils/token_verify')
 
 app.use(cors());
 
+app.use(jwt({ secret }).unless({
+  path: [/^\/rc\/serve\/registry/, /^\/rc\/serve\/login/]
+}))
+
 app.use(async (ctx, next) => {
   return next().catch((err) => {
     if (err.status === 401) {
@@ -30,7 +34,7 @@ app.use(async (ctx, next) => {
       const data = await verToken(token)
       ctx.request.userInfo = data
     } catch (e) {
-      ctx.status = 401;
+      ctx.status = 200;
       ctx.body = {
         code: 401,
         message: '登录过期，请重新登录'
@@ -39,10 +43,6 @@ app.use(async (ctx, next) => {
   }
   await next();
 })
-
-app.use(jwt({ secret }).unless({
-  path: [/\/registry/, /\/login/]
-}))
 
 app.use(bodyParser())
 

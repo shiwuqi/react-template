@@ -3,8 +3,8 @@ import ContentMenu from '../ContentMenu'
 
 export interface menusType {
   name: string,
-  icon: string,
-  path: string,
+  icon?: string,
+  path?: string,
   key: string,
   meta: boolean,
   children?: menusType[]
@@ -14,9 +14,16 @@ const menus: menusType[] = [
   {
     name: '用户反馈',
     icon: 'file-done',
-    path: '/page/feed',
     key: 'feed',
-    meta: true
+    meta: true,
+    children: [
+      {
+        name: '用户反馈',
+        path: '/page/feed',
+        key: 'feed',
+        meta: true
+      }
+    ]
   },
   {
     name: '用户信息',
@@ -26,13 +33,15 @@ const menus: menusType[] = [
     meta: true
   },
   {
-    name: '权限设置',
-    icon: 'poweroff',
-    path: '/page/power',
-    key: 'power',
+    name: 'Hook',
+    icon: 'code',
+    path: '/page/hook',
+    key: 'hook',
     meta: true
   }
 ]
+
+const openKey: string[] = ['feed']
 
 const styles = {
   logo: {
@@ -47,7 +56,7 @@ export default class SiderBar extends React.Component {
     return (
       <div style={{height: '100vh', overflowY: 'auto'}}>
         <div style={styles.logo}></div>
-        <ContentMenu menus={menus} />
+        <ContentMenu menus={menus} openKey={openKey} />
       </div>
     )
   }
