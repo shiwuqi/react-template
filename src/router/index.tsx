@@ -38,16 +38,14 @@ const styles = {
   }
 }
 
-export default class Index extends React.Component {
-  render() {
-    return (
-      <Router history={history}>
-        <React.Suspense fallback={<div style={styles.loading}>
-          <Spin />
-        </div>}>
-          <RouterBeforeEach routes={routes} />
-        </React.Suspense>
-      </Router>
-    )
-  }
+export default function Index(): React.SFCElement<React.ElementType> {
+  return (
+    <Router history={history}>
+      <React.Suspense fallback={<div style={styles.loading}>
+        <Spin />
+      </div>}>
+        <RouterBeforeEach routes={routes} />
+      </React.Suspense>
+    </Router>
+  )
 }

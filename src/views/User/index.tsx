@@ -1,14 +1,11 @@
-import * as React from 'react'
+import * as React from 'react';
 
-class User extends React.PureComponent {
-
-  render() {
-    return (
-      <div>
-        <p>user</p>
-      </div>
-    )
-  }
+function User(): React.SFCElement<React.ElementType> {
+  return (
+    <div>
+      <p>user</p>
+    </div>
+  )
 }
 
-export default User
+export default User;

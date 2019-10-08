@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { Button } from 'antd'
 
-export default function Hook() {
+export default function Hook(): React.SFCElement<React.ElementType> {
   const [count, setCount] = React.useState(0)
 
   return <div>
