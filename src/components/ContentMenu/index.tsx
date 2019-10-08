@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Menu, Icon } from 'antd';
 import { withRouter, Link, RouteComponentProps } from 'react-router-dom';
 import { menusType } from '../SiderBar';
@@ -8,14 +8,17 @@ const MenuItem = Menu.Item;
 
 interface CMProps extends RouteComponentProps {
   menus: menusType[],
-  openKey: string[],
-  selectedKey: string[]
+  openKey: string[]
 }
 
 function ContentMenu(props: CMProps): React.SFCElement<React.ElementType> {
-  const { menus, openKey, selectedKey } = props;
-  const [selectedKeys, setSelectedKeys] = useState(selectedKey);
+  const { menus, openKey } = props;
+  const [selectedKeys, setSelectedKeys] = useState([props.location.pathname]);
   const [openKeys, setOpenKeys] = useState(openKey);
+
+  useEffect(() => {
+    console.log(props.location.pathname);
+  })
 
   const getComponentItems = (data: menusType[]) => {
     return data.map(item => {
