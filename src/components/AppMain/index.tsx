@@ -1,8 +1,13 @@
-import * as React from 'react'
-import { Switch, Route } from 'react-router-dom'
-import { Spin } from 'antd'
+import * as React from 'react';
+import { Switch, Route } from 'react-router-dom';
+import { Spin } from 'antd';
 
-const subRoutes: ReadonlyArray<any> = [
+interface subRoutesType {
+  path: string,
+  component: React.LazyExoticComponent<any>
+}
+
+const subRoutes: ReadonlyArray<subRoutesType> = [
   {
     path: '/page/feed',
     component: React.lazy(() => import('../../views/Feed'))

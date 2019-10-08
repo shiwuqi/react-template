@@ -42,22 +42,15 @@ const menus: menusType[] = [
 ]
 
 const openKey: string[] = ['feed']
+const selectedKey: string[] = ['feed']
 
-const styles = {
-  logo: {
-    height: '32px',
-    background: 'rgba(255, 255, 255, .2)',
-    margin: '16px'
-  }
+function SiderBar(): React.SFCElement<React.ElementType> {
+  return (
+    <div style={{ height: '100vh', overflowY: 'auto' }}>
+      <div style={{ height: '32px', background: 'rgba(255, 255, 255, .2)', margin: '16px' }}></div>
+      <ContentMenu menus={menus} openKey={openKey} selectedKey={selectedKey} />
+    </div>
+  )
 }
 
-export default class SiderBar extends React.Component {
-  render () {
-    return (
-      <div style={{height: '100vh', overflowY: 'auto'}}>
-        <div style={styles.logo}></div>
-        <ContentMenu menus={menus} openKey={openKey} />
-      </div>
-    )
-  }
-}
+export default SiderBar

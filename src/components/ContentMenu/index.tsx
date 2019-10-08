@@ -1,43 +1,28 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Menu, Icon } from 'antd';
 import { withRouter, Link, RouteComponentProps } from 'react-router-dom';
-import { menusType } from '../SideBar';
+import { menusType } from '../SiderBar';
 
 const SubMenu = Menu.SubMenu;
 const MenuItem = Menu.Item;
 
 interface CMProps extends RouteComponentProps {
   menus: menusType[],
-  openKey: string[]
+  openKey: string[],
+  selectedKey: string[]
 }
 
-interface CMState {
-  selectedKeys: string[]
-}
+function ContentMenu(props: CMProps): React.SFCElement<React.ElementType> {
+  const { menus, openKey, selectedKey } = props;
+  const [selectedKeys, setSelectedKeys] = useState(selectedKey);
+  const [openKeys, setOpenKeys] = useState(openKey);
 
-class ContentMenu extends React.Component<CMProps, CMState> {
-  constructor(props: CMProps) {
-    super(props)
-    this.state = {
-      selectedKeys: []
-    }
-  }
-
-  static defaultProps = {
-    menus: [],
-    openKey: ['feed']
-  }
-
-  static test = () => {
-
-  }
-
-  getComponentItems = (data: menusType[]) => {
+  const getComponentItems = (data: menusType[]) => {
     return data.map(item => {
       if (item.meta) {
         if (item.children && item.children.length) {
           return <SubMenu key={item.key} title={<span>{item.icon && <Icon type={item.icon} />}{item.name}</span>}>
-            {this.getComponentItems(item.children)}
+            {getComponentItems(item.children)}
           </SubMenu>
         }
         return <MenuItem key={item.key}>
@@ -50,18 +35,11 @@ class ContentMenu extends React.Component<CMProps, CMState> {
     })
   }
 
-
-  render() {
-    const { location, menus, openKey } = this.props
-    const { pathname } = location
-    const items = pathname.split('/')
-    const selectedKeys = items[items.length - 1]
-    return (
-      <Menu theme="dark" defaultOpenKeys={openKey} selectedKeys={[selectedKeys]} onClick={({ key }) => this.setState({ selectedKeys: [key] })} mode='inline'>
-        {this.getComponentItems(menus)}
-      </Menu>
-    )
-  }
+  return (
+    <Menu theme="dark" openKeys={openKeys} selectedKeys={selectedKeys} onOpenChange={openKeys => setOpenKeys(openKeys)} onClick={({ key }) => setSelectedKeys([key])} mode='inline'>
+      {getComponentItems(menus)}
+    </Menu>
+  )
 }
 
 export default withRouter(ContentMenu)

@@ -1,11 +1,11 @@
 import React from 'react';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
-import { Form, Icon, Input, Button } from 'antd'
-import { FormComponentProps } from 'antd/es/form'
-import './style.less'
-import md5 from 'md5'
-import store from '../../redux/store'
-import { loginIn } from '../../redux/actions/login'
+import { Form, Icon, Input, Button } from 'antd';
+import { FormComponentProps } from 'antd/es/form';
+import './style.less';
+import md5 from 'md5';
+import store from '../../redux/store';
+import { loginIn } from '../../redux/actions/login';
 
 const FormItem = Form.Item
 
