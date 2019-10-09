@@ -1,8 +1,9 @@
 import { combineReducers } from 'redux'
-import login from './login'
+import login, { LoginState } from './login'
+import { Login_ACTION } from '../constants'
 
-const rootReducers = combineReducers({
-  login
-})
+export interface RootState extends LoginState {}
+
+const rootReducers = combineReducers<RootState, Login_ACTION>({ login } as any)
 
 export default rootReducers

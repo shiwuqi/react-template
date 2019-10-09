@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-function User(): React.SFCElement<React.ElementType> {
+function User() {
   return (
     <div>
       <p>user</p>

@@ -38,7 +38,7 @@ const styles = {
   }
 }
 
-export default function Index(): React.SFCElement<React.ElementType> {
+export default function Index() {
   return (
     <Router history={history}>
       <React.Suspense fallback={<div style={styles.loading}>

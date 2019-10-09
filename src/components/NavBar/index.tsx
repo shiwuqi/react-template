@@ -4,7 +4,7 @@ import { Dropdown, Menu, message } from 'antd';
 import './style.css';
 import request from '../../utils/request';
 
-function HeaderBar(props: RouteComponentProps): React.SFCElement<React.ElementType> {
+function HeaderBar(props: RouteComponentProps) {
   const [arrow, setArrow] = useState('arrows-alt');
 
   const logOut = async () => {

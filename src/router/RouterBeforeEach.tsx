@@ -6,7 +6,7 @@ interface RProps {
   routes: ReadonlyArray<any>
 }
 
-function RouterBeforeEach(props: RProps & RouteComponentProps): React.SFCElement<React.ElementType> {
+function RouterBeforeEach(props: RProps & RouteComponentProps) {
   const { routes, location } = props;
   const token = localStorage.getItem("token") || "";
   if (!token && location.pathname !== '/' && !/\/registry/.test(location.pathname)) {

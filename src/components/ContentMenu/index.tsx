@@ -11,7 +11,7 @@ interface CMProps extends RouteComponentProps {
   openKey: string[]
 }
 
-function ContentMenu(props: CMProps): React.SFCElement<React.ElementType> {
+function ContentMenu(props: CMProps) {
   const { menus, openKey } = props;
   const [selectedKeys, setSelectedKeys] = useState([props.location.pathname]);
   const [openKeys, setOpenKeys] = useState(openKey);

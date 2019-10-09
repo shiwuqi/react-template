@@ -6,7 +6,7 @@ import NavBar from '../../components/NavBar'
 
 const { Header, Content, Sider } = Layout;
 
-function Layouts(): React.SFCElement<React.ElementType> {
+function Layouts() {
   return (
     <Layout style={{ width: '100%' }}>
       <Sider>

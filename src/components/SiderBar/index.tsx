@@ -43,7 +43,7 @@ const menus: menusType[] = [
 
 const openKey: string[] = ['feed']
 
-function SiderBar(): React.SFCElement<React.ElementType> {
+function SiderBar() {
   return (
     <div style={{ height: '100vh', overflowY: 'auto' }}>
       <div style={{ height: '32px', background: 'rgba(255, 255, 255, .2)', margin: '16px' }}></div>
