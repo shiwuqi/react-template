@@ -11,7 +11,7 @@ export interface routeType {
 
 const routes: routeType[] = [
   {
-    path: '/',
+    path: '/login',
     component: React.lazy(() => import('../views/Login'))
   },
   {

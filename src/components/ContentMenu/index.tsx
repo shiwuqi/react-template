@@ -21,7 +21,7 @@ function ContentMenu(props: CMProps) {
   })
 
   const getComponentItems = (data: menusType[]) => {
-    return data.map(item => {
+    const datas = data.map(item => {
       if (item.meta) {
         if (item.children && item.children.length) {
           return <SubMenu key={item.key} title={<span>{item.icon && <Icon type={item.icon} />}{item.name}</span>}>
@@ -35,7 +35,8 @@ function ContentMenu(props: CMProps) {
           </Link>
         </MenuItem>
       }
-    })
+    });
+    return datas;
   }
 
   return (

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import { Spin } from 'antd';
 
 interface subRoutesType {
@@ -38,13 +38,11 @@ const AppMain: React.FC = () => {
       <React.Suspense fallback={<div style={styles.loading}>
         <Spin />
       </div>}>
-        <Switch>
-          {
-            subRoutes.map(item => {
-              return <Route exact {...item} key={item.path} />
-            })
-          }
-        </Switch>
+        {
+          subRoutes.map(item => {
+            return <Route exact {...item} key={item.path} />
+          })
+        }
       </React.Suspense>
     </div>
   )

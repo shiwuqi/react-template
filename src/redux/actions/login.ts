@@ -36,7 +36,7 @@ export function loginIn(url: string, params: object, method: string) {
       if (res.code === 200) {
         message.success(res.message)
         localStorage.setItem("token", res.data)
-        history.replace({ pathname: '/page/feed' })
+        history.replace({ pathname: '/feed' })
         dispatch({
           type: LOGIN_RECEIVE,
           data: res

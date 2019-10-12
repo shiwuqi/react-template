@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react'
 import { Table, message, Tooltip } from 'antd'
 import { ColumnProps } from 'antd/es/table'
 import request from '../../utils/request'
