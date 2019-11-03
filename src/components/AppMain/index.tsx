@@ -3,8 +3,8 @@ import { Route } from 'react-router-dom';
 import { Spin } from 'antd';
 
 interface subRoutesType {
-  path: string,
-  component: React.LazyExoticComponent<any>
+  path: string;
+  component: React.LazyExoticComponent<any>;
 }
 
 const subRoutes: ReadonlyArray<subRoutesType> = [

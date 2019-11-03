@@ -2,7 +2,6 @@ import * as React from 'react';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { Form, Icon, Input, Button } from 'antd';
 import { FormComponentProps } from 'antd/es/form';
-import history from '../../utils/history';
 import '../Login/style.less';
 import { checkUserAccount, userRegistry } from '../../api/login';
 import md5 from 'md5';
@@ -10,8 +9,8 @@ import md5 from 'md5';
 const FormItem = Form.Item
 
 export interface RegistryFormProps {
-  account: string,
-  password: string,
+  account: string;
+  password: string;
 }
 
 class RegistryForm extends React.Component<RegistryFormProps & FormComponentProps & RouteComponentProps> {
@@ -52,7 +51,7 @@ class RegistryForm extends React.Component<RegistryFormProps & FormComponentProp
         }
         userRegistry(params).then(res => {
           if (res.code === 200) {
-            history.replace({ pathname: '/' })
+            this.props.history.replace({ pathname: '/login' })
           }
         })
       }

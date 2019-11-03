@@ -10,8 +10,8 @@ import { loginIn } from '../../redux/actions/login';
 const FormItem = Form.Item
 
 export interface LoginFormProps extends FormComponentProps, RouteComponentProps {
-  account: string,
-  password: string
+  account: string;
+  password: string;
 }
 
 class LoginForm extends React.Component<LoginFormProps> {
@@ -43,6 +43,11 @@ class LoginForm extends React.Component<LoginFormProps> {
           password: md5(values.password)
         }
         store.dispatch(loginIn('/login', params, 'POST'))
+          .then((res: any) => {
+            if (res.code === 200) {
+              this.props.history.replace({ pathname: '/page/feed' })
+            }
+          })
       }
     });
   }

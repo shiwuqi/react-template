@@ -2,12 +2,12 @@ import * as React from 'react';
 import ContentMenu from '../ContentMenu'
 
 export interface menusType {
-  name: string,
-  icon?: string,
-  path?: string,
-  key: string,
-  meta: boolean,
-  children?: menusType[]
+  name: string;
+  icon?: string;
+  path?: string;
+  key: string;
+  meta: boolean;
+  children?: menusType[];
 }
 
 const menus: menusType[] = [

@@ -4,18 +4,18 @@ import { ColumnProps } from 'antd/es/table'
 import request from '../../utils/request'
 
 interface FeedState {
-  data: Array<object>,
+  data: Array<object>;
   pagination: {
-    total: number,
-    defaultCurrent: number,
-    showLoading: boolean
+    total: number;
+    defaultCurrent: number;
+    showLoading: boolean;
   }
 }
 
 interface Column {
-  key: number,
-  routeKey: string,
-  id: string
+  key: number;
+  routeKey: string;
+  id: string;
 }
 
 class Feed extends React.Component<any, FeedState> {

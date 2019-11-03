@@ -1,20 +1,18 @@
 import * as React from "react";
 import { Switch, Route, Redirect, withRouter, RouteComponentProps } from 'react-router-dom';
-import { message } from 'antd';
 
 interface RProps {
-  routes: ReadonlyArray<any>
+  routes: ReadonlyArray<any>;
 }
 
 function RouterBeforeEach(props: RProps & RouteComponentProps) {
   const { routes, location } = props;
   const token = localStorage.getItem("token") || "";
-  if (!token && location.pathname !== '/login' && !/\/registry/.test(location.pathname)) {
-    message.warning('请先登录');
+  if (!token && location.pathname !== '/' && location.pathname !== '/login' && !/\/registry/.test(location.pathname)) {
     return (
       <Redirect to='/login' />
     )
-  } else if (location.pathname === "/page") {
+  } else if (location.pathname === '/page') {
     return (
       <Redirect to='/page/feed' />
     )
@@ -23,7 +21,7 @@ function RouterBeforeEach(props: RProps & RouteComponentProps) {
       <Switch>
         {
           routes.map((item) => {
-            return <Route exact={item.path !== "/page"} {...item} key={item.path} />
+            return <Route exact={item.path !== '/page'} {...item} key={item.path} />
           })
         }
         <Redirect from='/*' to='/404' />

@@ -7,8 +7,8 @@ const SubMenu = Menu.SubMenu;
 const MenuItem = Menu.Item;
 
 interface CMProps extends RouteComponentProps {
-  menus: menusType[],
-  openKey: string[]
+  menus: menusType[];
+  openKey: string[];
 }
 
 function ContentMenu(props: CMProps) {

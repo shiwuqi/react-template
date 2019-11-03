@@ -1,12 +1,12 @@
-import * as React from 'react'
-import { Router } from 'react-router-dom'
-import history from '../utils/history'
-import RouterBeforeEach from './RouterBeforeEach'
-import { Spin } from 'antd'
+import * as React from 'react';
+import { BrowserRouter } from 'react-router-dom';
+import RouterBeforeEach from './RouterBeforeEach';
+import { Spin } from 'antd';
+import './style.less';
 
 export interface routeType {
-  path: string,
-  component: React.ElementType
+  path: string;
+  component: React.ElementType;
 }
 
 const routes: routeType[] = [
@@ -28,24 +28,14 @@ const routes: routeType[] = [
   }
 ]
 
-const styles = {
-  loading: {
-    display: 'flex',
-    width: '100%',
-    height: '100vh',
-    justifyContent: 'center',
-    alignContent: 'center',
-  }
-}
-
 export default function Index() {
   return (
-    <Router history={history}>
-      <React.Suspense fallback={<div style={styles.loading}>
+    <BrowserRouter>
+      <React.Suspense fallback={<div className='loading'>
         <Spin />
       </div>}>
         <RouterBeforeEach routes={routes} />
       </React.Suspense>
-    </Router>
+    </BrowserRouter>
   )
 }

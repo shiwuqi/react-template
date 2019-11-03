@@ -1,9 +1,9 @@
 import { LOGIN_RESPONSE, LOGIN_RECEIVE, Login_ACTION } from '../constants'
 
 export interface LoginState {
-  count: number,
-  data: object | null,
-  isLogin: boolean
+  count: number;
+  data: object | null;
+  isLogin: boolean;
 }
 
 export const initialState = {

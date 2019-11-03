@@ -1,11 +1,10 @@
 import request from '../../utils/request'
 import { message } from 'antd'
-import history from '../../utils/history'
 import { LOGIN_RESPONSE, LOGIN_RECEIVE, Login_ACTION } from '../constants'
 import { Dispatch } from 'redux'
 
 export interface LoginResponse {
-  type: typeof LOGIN_RESPONSE
+  type: typeof LOGIN_RESPONSE;
 }
 
 export function LoginResponse(): LoginResponse {
@@ -15,8 +14,8 @@ export function LoginResponse(): LoginResponse {
 }
 
 export interface LoginReceive {
-  type: typeof LOGIN_RECEIVE,
-  data: any
+  type: typeof LOGIN_RECEIVE;
+  data: any;
 }
 
 export function LoginReceive(data: any): LoginReceive {
@@ -36,7 +35,6 @@ export function loginIn(url: string, params: object, method: string) {
       if (res.code === 200) {
         message.success(res.message)
         localStorage.setItem("token", res.data)
-        history.replace({ pathname: '/feed' })
         dispatch({
           type: LOGIN_RECEIVE,
           data: res
@@ -44,6 +42,7 @@ export function loginIn(url: string, params: object, method: string) {
       } else {
         message.error(res.message)
       }
+      return res;
     } catch (e) {
       message.error("登录失败")
     }
