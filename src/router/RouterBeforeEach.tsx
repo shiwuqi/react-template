@@ -16,7 +16,7 @@ function RouterBeforeEach(props: RProps & RouteComponentProps) {
     return (
       <Redirect to='/page/feed' />
     )
-  } {
+  } else {
     return (
       <Switch>
         {
