@@ -8,7 +8,7 @@ interface RProps {
 function RouterBeforeEach(props: RProps & RouteComponentProps) {
   const { routes, location } = props;
   const token = localStorage.getItem("token") || "";
-  if (!token && location.pathname !== '/' && location.pathname !== '/login' && !/\/registry/.test(location.pathname)) {
+  if (location.pathname === '/' || (!token && location.pathname !== '/login' && !/\/registry/.test(location.pathname))) {
     return (
       <Redirect to='/login' />
     )

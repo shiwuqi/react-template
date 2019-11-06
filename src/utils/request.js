@@ -1,6 +1,5 @@
 import { fetch } from 'whatwg-fetch'
 import 'es6-promise'
-import history from './history'
 // import '../mock'
 
 const DOMAIN = process.env.DOMAIN
@@ -42,7 +41,6 @@ function request(url, options, method) {
       const response = await fetch(url, newOptions)
       if (response.status === 401) {
         localStorage.removeItem('token')
-        history.replace('/')
         return
       }
       const res = newOptions.method === 'DELETE' ? response.text() : response.json()
