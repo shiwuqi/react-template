@@ -10,7 +10,7 @@ function Layouts() {
   return (
     <Layout style={{ width: '100%' }}>
       <Sider>
-        <SiderBar></SiderBar>
+        <SiderBar />
       </Sider>
       <Layout style={{ background: '#fff' }}>
         <Header style={{ padding: '0 16px', background: '#fff', boxShadow: '0 2px 6px rgba(99, 99, 99, .15)' }}>

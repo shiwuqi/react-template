@@ -7,6 +7,7 @@ import './style.less';
 export interface routeType {
   path: string;
   component: React.ElementType;
+  children?: routeType[];
 }
 
 const routes: routeType[] = [
@@ -20,7 +21,21 @@ const routes: routeType[] = [
   },
   {
     path: '/page',
-    component: React.lazy(() => import('../views/Layouts'))
+    component: React.lazy(() => import('../views/Layouts')),
+    children: [
+      {
+        path: '/feed',
+        component: React.lazy(() => import('../views/Feed'))
+      },
+      {
+        path: '/user',
+        component: React.lazy(() => import('../views/User'))
+      },
+      {
+        path: '/hook',
+        component: React.lazy(() => import('../views/Hook'))
+      },
+    ]
   },
   {
     path: '/404',

@@ -1,55 +1,47 @@
 import * as React from 'react';
-import ContentMenu from '../ContentMenu'
+import { withRouter, Link, RouteComponentProps } from 'react-router-dom';
+import { Menu, Icon } from 'antd';
+import { asideMenuConfig, AsideMenuConfigType } from '../../router/menu';
+const { useState, useEffect } = React;
+const SubMenu = Menu.SubMenu;
+const MenuItem = Menu.Item;
+const openKey: string[] = ['feed'];
 
-export interface menusType {
-  name: string;
-  icon?: string;
-  path?: string;
-  key: string;
-  meta: boolean;
-  children?: menusType[];
-}
+function SiderBar(props: RouteComponentProps) {
+  const [selectedKeys, setSelectedKeys] = useState([props.location.pathname]);
+  const [openKeys, setOpenKeys] = useState(openKey);
 
-const menus: menusType[] = [
-  {
-    name: '用户反馈',
-    icon: 'file-done',
-    key: 'feed',
-    meta: true,
-    children: [
-      {
-        name: '用户反馈',
-        path: '/page/feed',
-        key: '/page/feed',
-        meta: true
+  useEffect(() => {
+    console.log(props.location.pathname);
+  })
+
+  const getComponentItems = (data: AsideMenuConfigType[]) => {
+    const Menus = data.map(item => {
+      if (item.meta) {
+        if (item.children && item.children.length) {
+          return <SubMenu key={item.key} title={<span>{item.icon && <Icon type={item.icon} />}{item.name}</span>}>
+            {getComponentItems(item.children)}
+          </SubMenu>
+        }
+        return <MenuItem key={item.key}>
+          <Link to={item.key}>
+            {item.icon && <Icon type={item.icon} />}
+            <span>{item.name}</span>
+          </Link>
+        </MenuItem>
       }
-    ]
-  },
-  {
-    name: '用户信息',
-    icon: 'user',
-    path: '/page/user',
-    key: '/page/user',
-    meta: true
-  },
-  {
-    name: 'Hook',
-    icon: 'code',
-    path: '/page/hook',
-    key: '/page/hook',
-    meta: true
+    });
+    return Menus;
   }
-]
 
-const openKey: string[] = ['feed']
-
-function SiderBar() {
   return (
     <div style={{ height: '100vh', overflowY: 'auto' }}>
       <div style={{ height: '32px', background: 'rgba(255, 255, 255, .2)', margin: '16px' }}></div>
-      <ContentMenu menus={menus} openKey={openKey} />
+      <Menu theme="dark" openKeys={openKeys} selectedKeys={selectedKeys} onOpenChange={openKeys => setOpenKeys(openKeys)} onClick={({ key }) => setSelectedKeys([key])} mode='inline'>
+        {getComponentItems(asideMenuConfig)}
+      </Menu>
     </div>
   )
 }
 
-export default SiderBar
+export default withRouter(SiderBar);

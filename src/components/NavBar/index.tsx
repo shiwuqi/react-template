@@ -44,4 +44,4 @@ function HeaderBar(props: RouteComponentProps) {
   )
 }
 
-export default withRouter(HeaderBar)
+export default withRouter(HeaderBar);
