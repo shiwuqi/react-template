@@ -13,4 +13,6 @@ npm run serve or yarn serve // 运行前后端项目
 npm run build or yarn build // 打包前端项目
 ```
 
+## 功能
 
+登录校验、注册

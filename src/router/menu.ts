@@ -36,5 +36,12 @@ export const asideMenuConfig: AsideMenuConfigType[] = [
     path: '/page/hook',
     key: '/page/hook',
     meta: true
+  },
+  {
+    name: '富文本',
+    icon: 'edit',
+    path: '/page/rich',
+    key: '/page/rich',
+    meta: true
   }
 ]
