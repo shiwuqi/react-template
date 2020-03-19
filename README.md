@@ -16,3 +16,5 @@ npm run build or yarn build // 打包前端项目
 ## 功能
 
 登录校验、注册
+
+富文本

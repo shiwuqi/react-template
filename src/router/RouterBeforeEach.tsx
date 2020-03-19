@@ -21,59 +21,60 @@ const RouteItem = (props: any) => {
 function RouterBeforeEach(props: RProps & RouteComponentProps) {
   const { routes, location } = props;
   const token = localStorage.getItem("token") || "";
-  if (location.pathname === '/' || (!token && location.pathname !== '/login' && !/\/registry/.test(location.pathname))) {
-    return (
-      <Redirect to='/login' />
-    )
-  } else if (location.pathname === '/page') {
-    return (
-      <Redirect to='/page/feed' />
-    )
-  } else {
-    return (
-      <Switch>
-        {
-          routes.map((route) => {
-            const { component: RouteComponent, children, ...others } = route;
-            return (
-              <Route
-                exact={route.path === '/page' ? false : true}
-                key={route.path}
-                {...others}
-                component={(props: any) => {
-                  return (
-                    children ? ( // 嵌套路由
-                      <RouteComponent key={path} {...props}>
-                        <Switch>
-                          {children.map((routeChild: any) => {
-                            const { path: childPath, ...childOthers } = routeChild;
-                            return RouteItem({
-                              key: childPath,
-                              path: childPath && path.join(route.path, childPath),
-                              ...childOthers
-                            });
-                          })}
-                        </Switch>
-                      </RouteComponent>
-                    ) : (
-                        <>
-                          {
-                            RouteItem({
-                              key: route.path,
-                              ...route,
-                            })
-                          }
-                        </>
-                      )
-                  )
-                }}></Route>
+
+  return (
+    <>
+      {
+        (!token || location.pathname !== '/login' && !/\/registry/.test(location.pathname)) ? (
+          <Redirect to='/login' />
+        ) : location.pathname === '/' || location.pathname === '/page' ? (
+          <Redirect to='/page/feed' />
+        ) : (
+              <Switch>
+                {
+                  routes.map((route) => {
+                    const { component: RouteComponent, children, ...others } = route;
+                    return (
+                      <Route
+                        exact={route.path === '/page' ? false : true}
+                        key={route.path}
+                        {...others}
+                        component={(props: any) => {
+                          return (
+                            children ? ( // 嵌套路由
+                              <RouteComponent key={path} {...props}>
+                                <Switch>
+                                  {children.map((routeChild: any) => {
+                                    const { path: childPath, ...childOthers } = routeChild;
+                                    return RouteItem({
+                                      key: childPath,
+                                      path: childPath && path.join(route.path, childPath),
+                                      ...childOthers
+                                    });
+                                  })}
+                                </Switch>
+                              </RouteComponent>
+                            ) : (
+                                <>
+                                  {
+                                    RouteItem({
+                                      key: route.path,
+                                      ...route,
+                                    })
+                                  }
+                                </>
+                              )
+                          )
+                        }}></Route>
+                    )
+                  })
+                }
+                <Redirect from='/*' to='/404' />
+              </Switch>
             )
-          })
-        }
-        <Redirect from='/*' to='/404' />
-      </Switch>
-    )
-  }
+      }
+    </>
+  )
 }
 
 
