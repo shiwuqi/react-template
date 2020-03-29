@@ -21,11 +21,11 @@ const RouteItem = (props: any) => {
 function RouterBeforeEach(props: RProps & RouteComponentProps) {
   const { routes, location } = props;
   const token = localStorage.getItem("token") || "";
-
+  
   return (
     <>
       {
-        (!token || location.pathname !== '/login' && !/\/registry/.test(location.pathname)) ? (
+        (!token && location.pathname !== '/login' && location.pathname !== '/registry') ? (
           <Redirect to='/login' />
         ) : location.pathname === '/' || location.pathname === '/page' ? (
           <Redirect to='/page/feed' />

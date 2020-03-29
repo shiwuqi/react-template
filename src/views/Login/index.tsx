@@ -45,7 +45,7 @@ class LoginForm extends React.Component<LoginFormProps> {
         store.dispatch(loginIn('/login', params, 'POST'))
           .then((res: any) => {
             if (res.code === 200) {
-              this.props.history.replace({ pathname: '/page/feed' })
+              this.props.history.replace('/page/feed')
             }
           })
       }
