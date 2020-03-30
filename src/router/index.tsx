@@ -23,24 +23,7 @@ const routes: routeType[] = [
   {
     path: '/page',
     component: lazy(() => import('../views/Layouts')),
-    children: [
-      {
-        path: '/feed',
-        component: lazy(() => import('../views/Feed'))
-      },
-      {
-        path: '/user',
-        component: lazy(() => import('../views/User'))
-      },
-      {
-        path: '/hook',
-        component: lazy(() => import('../views/Hook'))
-      },
-      {
-        path: '/rich',
-        component: lazy(() => import('../views/Rich'))
-      }
-    ]
+    children: []
   },
   {
     path: '/404',
