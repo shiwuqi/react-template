@@ -3,7 +3,7 @@ import { BrowserRouter } from 'react-router-dom';
 import RouterBeforeEach from './RouterBeforeEach';
 import { Spin } from 'antd';
 import './style.less';
-const { lazy, Suspense } = React;
+const { lazy, Suspense, memo } = React;
 
 export interface routeType {
   path: string;
@@ -14,20 +14,37 @@ export interface routeType {
 const routes: routeType[] = [
   {
     path: '/login',
-    component: lazy(() => import('../views/Login'))
+    component: memo(lazy(() => import('../views/Login')))
   },
   {
     path: '/registry',
-    component: lazy(() => import('../views/Registry'))
+    component: memo(lazy(() => import('../views/Registry')))
   },
   {
     path: '/page',
-    component: lazy(() => import('../views/Layouts')),
-    children: []
+    component: memo(lazy(() => import('../views/Layouts'))),
+    children: [
+      {
+        path: '/page/feed',
+        component: memo(lazy(() => import('../views/Feed')))
+      },
+      {
+        path: '/page/user',
+        component: memo(lazy(() => import('../views/User')))
+      },
+      {
+        path: '/page/hook',
+        component: memo(lazy(() => import('../views/Hook')))
+      },
+      {
+        path: '/page/rich',
+        component: memo(lazy(() => import('../views/Rich')))
+      }
+    ]
   },
   {
     path: '/404',
-    component: lazy(() => import('../components/NotFoundPage'))
+    component: memo(lazy(() => import('../components/NotFoundPage')))
   }
 ]
 

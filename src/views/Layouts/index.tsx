@@ -1,12 +1,12 @@
 import * as React from 'react';
+import { RouteComponentProps } from 'react-router-dom';
 import { Layout } from 'antd';
 import SiderBar from '../../components/SiderBar';
-import AppMain from '../../components/AppMain';
 import NavBar from '../../components/NavBar'
 
 const { Header, Content, Sider } = Layout;
 
-function Layouts() {
+function Layouts(props: {children: React.ReactNode} & RouteComponentProps) {
   return (
     <Layout style={{ width: '100%' }}>
       <Sider>
@@ -17,7 +17,7 @@ function Layouts() {
           <NavBar />
         </Header>
         <Content>
-          <AppMain></AppMain>
+          {props.children}
         </Content>
       </Layout>
     </Layout>
