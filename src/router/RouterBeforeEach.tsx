@@ -13,16 +13,8 @@ interface RProps {
 }
 
 const RouteItem = (props: { component: any; path: string; key: string }) => {
-  const { path, component: Comp } = props;
-  return (
-    <Route
-      exact
-      key={path}
-      // render={(router: any) => <Comp {...router} />}
-      component={Comp}
-      path={path}
-    />
-  );
+  const { path, component } = props;
+  return <Route exact key={path} component={component} path={path} />;
 };
 
 function RouterBeforeEach(props: RProps & RouteComponentProps) {
