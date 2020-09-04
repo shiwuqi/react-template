@@ -1,6 +1,6 @@
-import * as React from 'react'
-import Index from './router'
-import './App.less'
+import * as React from "react";
+import Index from "./router";
+import "./App.less";
 
 const App: React.FC = () => {
   return (
@@ -8,6 +8,6 @@ const App: React.FC = () => {
       <Index />
     </div>
   );
-}
+};
 
 export default App;
