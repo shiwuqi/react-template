@@ -13,38 +13,38 @@ export interface routeType {
 
 const routes: routeType[] = [
   {
-    path: "/login",
-    component: memo(lazy(() => import("../views/Login"))),
-  },
-  {
-    path: "/registry",
-    component: memo(lazy(() => import("../views/Registry"))),
-  },
-  {
     path: "/page",
-    component: memo(lazy(() => import("../views/Layouts"))),
+    component: lazy(() => import("../views/Layouts")),
     children: [
       {
-        path: "/feed",
-        component: memo(lazy(() => import("../views/Feed"))),
+        path: "/page/feed",
+        component: lazy(() => import("../views/Feed")),
       },
       {
-        path: "/user",
-        component: memo(lazy(() => import("../views/User"))),
+        path: "/page/user",
+        component: lazy(() => import("../views/User")),
       },
       {
-        path: "/hook",
-        component: memo(lazy(() => import("../views/Hook"))),
+        path: "/page/hook",
+        component: lazy(() => import("../views/Hook")),
       },
       {
-        path: "/rich",
-        component: memo(lazy(() => import("../views/Rich"))),
+        path: "/page/rich",
+        component: lazy(() => import("../views/Rich")),
       },
     ],
   },
   {
+    path: "/login",
+    component: lazy(() => import("../views/Login")),
+  },
+  {
+    path: "/registry",
+    component: lazy(() => import("../views/Registry")),
+  },
+  {
     path: "/404",
-    component: memo(lazy(() => import("../components/NotFoundPage"))),
+    component: lazy(() => import("../components/NotFoundPage")),
   },
 ];
 

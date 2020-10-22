@@ -6,7 +6,9 @@ import {
   withRouter,
   RouteComponentProps,
 } from "react-router-dom";
-import path from "path";
+import { Spin } from "antd";
+// import path from "path";
+const { Suspense } = React;
 
 interface RProps {
   routes: ReadonlyArray<any>;
@@ -40,20 +42,28 @@ function RouterBeforeEach(props: RProps & RouteComponentProps) {
                 {...others}
                 component={(props: any) => {
                   return children ? ( // 嵌套路由
-                    <RouteComponent key={path} {...props}>
-                      <Switch>
-                        {children.map((routeChild: any) => {
-                          const {
-                            path: childPath,
-                            ...childOthers
-                          } = routeChild;
-                          return RouteItem({
-                            key: childPath,
-                            path: childPath && path.join(route.path, childPath),
-                            ...childOthers,
-                          });
-                        })}
-                      </Switch>
+                    <RouteComponent key={route.path} {...props}>
+                      <Suspense
+                        fallback={
+                          <div className="loading">
+                            <Spin />
+                          </div>
+                        }
+                      >
+                        <Switch>
+                          {children.map((routeChild: any) => {
+                            const {
+                              path: childPath,
+                              ...childOthers
+                            } = routeChild;
+                            return RouteItem({
+                              key: childPath,
+                              path: childPath,
+                              ...childOthers,
+                            });
+                          })}
+                        </Switch>
+                      </Suspense>
                     </RouteComponent>
                   ) : (
                     <>

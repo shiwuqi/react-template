@@ -10,7 +10,7 @@ export interface AsideMenuConfigType {
 export const asideMenuConfig: AsideMenuConfigType[] = [
   {
     name: '用户反馈',
-    path: '/page',
+    path: '/feed',
     icon: 'file-done',
     key: 'feed',
     meta: true,
