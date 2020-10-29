@@ -25,12 +25,8 @@ function RouterBeforeEach(props: RProps & RouteComponentProps) {
 
   return (
     <>
-      {!token &&
-      location.pathname !== "/login" &&
-      location.pathname !== "/registry" ? (
+      {!token ? (
         <Redirect to="/login" />
-      ) : location.pathname === "/" || location.pathname === "/page" ? (
-        <Redirect to="/page/feed" />
       ) : (
         <Switch>
           {routes.map((route) => {
@@ -62,6 +58,8 @@ function RouterBeforeEach(props: RProps & RouteComponentProps) {
                               ...childOthers,
                             });
                           })}
+                          <Redirect exact from="/page" to="/page/feed" />
+                          <Redirect from="/page/*" to="/404" />
                         </Switch>
                       </Suspense>
                     </RouteComponent>
@@ -77,6 +75,7 @@ function RouterBeforeEach(props: RProps & RouteComponentProps) {
               />
             );
           })}
+          <Redirect exact from="/" to="/page/feed" />
           <Redirect from="/*" to="/404" />
         </Switch>
       )}
