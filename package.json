@@ -82,7 +82,7 @@
     "react-app-polyfill": "^0.1.3",
     "react-dev-utils": "^6.1.1",
     "react-dom": "^16.8.6",
-    "react-draft-wysiwyg": "^1.12.13",
+    "react-draft-wysiwyg": "^1.14.6",
     "react-redux": "^5.1.1",
     "react-router-dom": "^5.0.1",
     "redux": "^4.0.1",
